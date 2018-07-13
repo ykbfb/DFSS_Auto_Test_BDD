@@ -18,7 +18,7 @@ class Data:
     city = 'suzhou'
 
 #===============客户详情=========================================
-    lnk_moblie = '18577844227' #  18577844226
+    lnk_moblie = '18577844230' #  18577844226
     sub_s = lnk_moblie[7:]
     lnk_name = '自动化联系人' + sub_s
     cmp_name = '需求书修改有限公司'+ lnk_moblie
@@ -70,7 +70,7 @@ class Data:
 #==========================================================================================================
 #    执行feature 文件的标签（tags）顺序
 #===========================================================================================================
-# behave --tags=login,createNewClient,myclient,finance_book,create_come_intview,approve_intview,create_vip_contract,arc_vip_contract_cmp,create_salesOrder_cmp,salesOrder_oprate,my_order
+# behave --tags=user_login,createNewClient,myclient,finance_book,create_come_intview,approve_intview,create_vip_contract,arc_vip_contract_cmp,create_salesOrder_cmp,salesOrder_oprate,my_order
 
 
 
