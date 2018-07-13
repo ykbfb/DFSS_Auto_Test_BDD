@@ -13,10 +13,6 @@ from hamcrest import assert_that, equal_to
 
 current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
 
-@Given('销售经理登录融管系统')
-def step_loginSystem(context):
-    lg = login(context.driver)
-    lg.user_login_verify(Data.sales_manager,'123456','suzhou')
 
 @When('审批邀约')
 def step_appvIntview(context):

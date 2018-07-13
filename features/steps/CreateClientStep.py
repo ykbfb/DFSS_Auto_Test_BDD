@@ -15,11 +15,6 @@ from hamcrest import assert_that, equal_to
 
 current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
 
-@Given('登录融管系统')
-def step_loginSystem(context):
-    lg = login(context.driver)
-    lg.user_login_verify(Data.sales,'123456','suzhou')
-
 @When('输入已存在的手机号')
 def step_inputClientDetail(context):
     global nc
@@ -41,6 +36,7 @@ def step_inputClientDetail(context):
     nc.switchToNewClientFrame()
     nc.inputMobile(Data.lnk_moblie)
     nc.checkMobileIsDuplicate()
+    time.sleep(1)
 
 @Then('校验客户已经存在')
 def step_checkClientIsExist(context):

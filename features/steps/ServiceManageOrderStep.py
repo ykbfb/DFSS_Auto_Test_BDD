@@ -12,20 +12,15 @@ from behave import *
 from hamcrest import assert_that, equal_to
 current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
 
-@Given('融服登录融管系统')
-def step_serviceLogin(context):
-    lg = login(context.driver)
-    lg.user_login_verify(Data.service_manager,'123456','suzhou')
-    time.sleep(1)
+
+#================================================================================================================
+@When('打开【融资订单管理】→【我的订单】→【待处理】页签，选择相应的主订单并点击【接单】按钮进行接单')
+def step_acceptOrder(context):
     b = Page(context.driver)
     time.sleep(1)
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-
-#================================================================================================================
-@When('打开【融资订单管理】→【我的订单】→【待处理】页签，选择相应的主订单并点击【接单】按钮进行接单')
-def step_acceptOrder(context):
     my_order.acceptOrder(Data.cmp_name)
     my_order.setWaitTime(2)
 

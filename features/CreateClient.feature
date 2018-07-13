@@ -3,13 +3,15 @@
 @createNewClient
 Feature: 创建客户
 
+  @exist
   Scenario: 已存在客户不能创建
-    Given 登录融管系统
+    Given 销售顾问登录融管系统
     When 输入已存在的手机号
     Then 校验客户已经存在
 
+  @not_exist
   Scenario: 不存在客户能创建成功
-    Given 登录融管系统
+    Given 销售顾问登录融管系统
     When 输入系统中不存在的手机号
     Then 校验客户不存在
     When 输入客户详情

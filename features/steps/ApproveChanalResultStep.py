@@ -16,8 +16,20 @@ def step_serviceDirctorlogin(context):
     lg = login(context.driver)
     lg.user_login_verify(Data.ser_director_manager,'123456','suzhou')
 
-@When('')
-def step_(context):
-    pass
+@When('打开【融资管理】→【融资喜报审批】→【待审批】页签选择相应的喜报并点击【订单详情】、点击【通过】按钮进行喜报审批')
+def step_dirctorApprvChannalResult(context):
+    global chan_appr_page
+    chan_appr_page = ChannalResultApprovalPage(context.driver)
+    chan_appr_page.approveChannalResult_Director(Data.cmp_name)
+    functions.insert_img(context.driver, "chanl_result_approve_Director_"+current_time+".png")
 
 
+@When('打开【财务】→【融资喜报审批】→【待审批】页签选择相应的喜报并点击【订单详情】、点击【通过】按钮进行喜报审批')
+def step_finceApprvChannalResult(context):
+    chan_appr_page.approveChannalResult_Finance(Data.cmp_name)
+    functions.insert_img(context.driver, "chanl_result_approve_Finance_"+current_time+".png")
+
+@When('打开【资源管理】→【融资业绩审批】→【待审批】页签选择相应的喜报并点击【订单详情】、点击【通过】按钮进行喜报审批')
+def step_dataMngrApprvChanalResult(context):
+    chan_appr_page.approveChannalResult_DataManager(Data.cmp_name)
+    functions.insert_img(context.driver, "chanl_result_approve_DataManager_"+current_time+".png")

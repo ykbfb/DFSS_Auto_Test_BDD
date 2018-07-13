@@ -26,7 +26,7 @@ class ServiceOrderTests(myunit.MyTest):
     def user_login_verify(self, username="yanfang", password="123456", city="suzhou"):
         login(self.driver).user_login(username, password, city)
 
-    #呼叫保存
+    #双击呼叫保存
     def aa_test_0001_call(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
@@ -65,7 +65,7 @@ class ServiceOrderTests(myunit.MyTest):
         functions.insert_img(self.driver, current_time + "__chanl_result_approve_Director.png")
         call_page.close()
 
-    #列表呼叫
+    #列表页批量呼叫
     def test_0004_multCall(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
