@@ -26,7 +26,7 @@ class BillTests(myunit.MyTest):
         login(self.driver).user_login(username, password, city)
 
 
-    # 创建收款单
+    # 创建意向金收款单
     def test_1_createBillReceipt(self):
         self.user_login_verify()
         new_Bill = NewOrderPage(self.driver)
@@ -41,8 +41,23 @@ class BillTests(myunit.MyTest):
         new_Bill.setWaitTime(2)
         new_Bill.close()
 
+    # 创建服务费收款单
+    def test_2_createBillReceipt(self):
+        self.user_login_verify()
+        new_Bill = NewOrderPage(self.driver)
+        new_Bill.createServiceBill(Data.ContractCode)
+        new_Bill.setWaitTime(2)
+
+        #校验收款单是否创建成功
+        new_Bill.backtoBillList()
+        new_Bill.searchBillReceipt(Data.ContractCode)
+        self.assertEqual(new_Bill.verifyBillReceiptActionSucess().strip(),"未结算")
+        functions.insert_img(self.driver, current_time + "__createServiceBill.png")
+        new_Bill.setWaitTime(2)
+        new_Bill.close()
+
     # 结算收款单
-    def test_2_caculateBillReceipt(self):
+    def test_3_caculateBillReceipt(self):
         self.user_login_verify()
         new_Bill = NewOrderPage(self.driver)
         new_Bill.caculateBill(Data.ContractCode)
@@ -55,6 +70,9 @@ class BillTests(myunit.MyTest):
         functions.insert_img(self.driver, current_time + "__VerifyCaculateBillSucess.png")
         new_Bill.setWaitTime(2)
         new_Bill.close()
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -150,7 +150,7 @@ class NewContractPage(Page):
     def uploadContractFile(self):
         self.uploadFile2(self.elem1,self.file_path)
         self.click_element(*self.uploadBtn)
-        self.waitElmentUntill(20,self.elem2)
+        self.waitElmentUntill(50,self.elem2)
         time.sleep(2)
         self.uploadFile2(self.elem2,self.file_path)
         self.waitElmentUntill(20,self.uploadBtn2)
@@ -237,13 +237,14 @@ class NewContractPage(Page):
         self.inputPreLoanAmt()
         self.inputIntentionAmt()
         self.inputContractMo()
+        self.inputAgreementDetail()
         self.scrollToElement('id',self.moveto_save_btn_loc)
         self.uploadContractFile()
         self.submitContract()
         time.sleep(3)
         self.close_alert()
         time.sleep(1)
-        self.close_alert()
+        #self.close_alert()
 
 #====================================================================================================================
     # 外包合同转会员

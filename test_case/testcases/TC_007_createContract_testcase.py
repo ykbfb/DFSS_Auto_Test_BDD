@@ -28,7 +28,7 @@ class ContractTests(myunit.MyTest):
 
 
     # 创建会员合同
-    def test_1_createVIPContract(self):
+    def AA_test_1_createVIPContract(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
         my_client.gotoMyClientList_All(Data.lnk_moblie)
@@ -46,7 +46,7 @@ class ContractTests(myunit.MyTest):
         my_client.close()
 
     # 创建外包合同
-    def aa_test_2_createBPOContract(self):
+    def test_2_createBPOContract(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
         my_client.gotoMyClientList_All(Data.lnk_moblie)

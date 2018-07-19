@@ -18,25 +18,25 @@ class Data:
     city = 'suzhou'
 
 #===============客户详情=========================================
-    lnk_moblie = '15928369511'
+    lnk_moblie = '15928369517'
     sub_s = lnk_moblie[7:]
     lnk_name = '自动化联系人' + sub_s
     cmp_name = '需求书修改有限公司'+ lnk_moblie
-    #cmp_name = '需求书修改有限公司13355446755'
+    #cmp_name = '需求书修改有限公司18577788899'
 
 #===============合同归档=========================================
     #合同打回、作废原因
     finance_name = 'sunquan'
     ctr_reject_memo = '自动化测试打回合同'
     ctr_discar_memo = '自动化测试作废合同'
-    ContractCode = 'HY05122018000016'
-    #ContractCode ='HY05122018000209'
+    ContractCode = 'HY05122018000017'
+    #ContractCode ='WB05122018000207'
 
 #===============融资订单=========================================
     #意向单
-    org_name = '平安普惠'
-    prd_name = '车主贷'
-    credit_manager = '张安林'
+    org_name = '浦发银行'
+    prd_name = '线上万用金'
+    credit_manager = '令磊'
 
     #融资喜报审批
     chanl_clt_name = '需求书修改有限公司'+ lnk_moblie

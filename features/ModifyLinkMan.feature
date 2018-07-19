@@ -1,6 +1,6 @@
 # Created by yang kun at 2018/7/9
 
-@myclient
+@modify_lnk
 Feature: 我的客户模糊查询及联系人修改
 
   Scenario: 修改联系人

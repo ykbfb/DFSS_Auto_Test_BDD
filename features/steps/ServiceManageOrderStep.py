@@ -32,6 +32,11 @@ def step_verifyAcceptOrderSuccess(context):
 #=================================================================================================================
 @When('打开【融资订单管理】→【我的订单】→【贷前调查】页签，选择相应的主订单并点击【转入专家测评】按钮')
 def step_movetoExpert(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.moveToExpert(Data.cmp_name)
     my_order.setWaitTime(2)
 
@@ -43,6 +48,11 @@ def step_verifymovetoExpertSucess(context):
 #=================================================================================================================
 @When('打开【融资订单管理】→【我的订单】→【专家测评】页签，选择相应的主订单并点击【转入机构寻访】按钮')
 def step_movetoAgency(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.moveToAgencySearch(Data.cmp_name)
     my_order.setWaitTime(2)
 
@@ -55,6 +65,11 @@ def step_verifymovetoAgencySucess(context):
 #==================================================================================================================
 @When('打开【融资订单管理】→【我的订单】→【机构寻访】页签，选择主订单并点击【智能融顾】按钮，选择相应的产品点击【发送意向单】')
 def step_createAimOrder(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.createAimOrder(Data.cmp_name, Data.org_name, Data.prd_name)
     my_order.setWaitTime(2)
 
@@ -67,24 +82,44 @@ def step_verifymovetoAgencySucess(context):
 #=====================================================================================================================
 @When('打开【融资订单管理】→【我的订单】→【机构寻访】页签，选择主订单并点击【意向单管理】按钮，选择相应的意向单，点击【创建子订单】按钮进行子订单创建')
 def step_createSubOrder(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.createSubOrder(Data.cmp_name, Data.credit_manager, Data.org_name)
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_createSubsOrder"+current_time+".png")
 
 @When('打开【融资订单管理】→【我的订单】→【贷前辅导】页签，选择子订单并点击【转入机构审批】按钮')
 def step_subOrderMovetoOrgApproval(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.moveToOrgApproval(Data.cmp_name)
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_moveSubsOrderToOrgApproval_"+current_time+".png")
 
 @When('打开【融资订单管理】→【我的订单】→【机构审批】页签，选择子订单并点击【评价】按钮对信贷经理进行评价')
 def step_estimateCreditManager(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.estimateCreditManager(Data.cmp_name)
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_moveSubsOrderToOrgApproval_"+current_time+".png")
 
 @When('机构审批{appv_status}：打开【融资订单管理】→【我的订单】→【机构审批】页签，选择子订单并点击【机构审批结果】按钮记录审批详情')
 def step_OrgApprove(context,appv_status):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     context.appv_status = appv_status
     if appv_status == '不通过':
         my_order.orgApproveReject(Data.cmp_name)
@@ -97,6 +132,11 @@ def step_OrgApprove(context,appv_status):
 
 @When('打开【融资订单管理】→【我的订单】→【机构审批】页签，选择子订单并点击【填写处理】按钮,选择成交并填写喜报详情')
 def step_submitChanelResult(context):
+    b = Page(context.driver)
+    time.sleep(1)
+    b.close_alert()
+    global my_order
+    my_order = ServiceManageOrderPage(context.driver)
     my_order.submitChanelResult(Data.cmp_name)
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_ChanelResultSubmitSucess_"+current_time+".png")

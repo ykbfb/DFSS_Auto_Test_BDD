@@ -1,3 +1,4 @@
+# language: zh-CN
 import unittest, sys
 
 sys.path.append("./model")
@@ -26,5 +27,3 @@ def step_deleteClientFromList(context):
     del_page = DeleteClientPage(context.driver)
     del_page.deleteClientFromList()
     functions.insert_img(context.driver, "deleteClientFromList_"+current_time+".png")
-
-

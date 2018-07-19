@@ -46,6 +46,7 @@ class NewOrderPage(Page):
     memo_loc = (By.ID,'memo') #备注
     bill_submit_loc = (By.ID,'btnSubmit') #提交收款单
 
+    #创建意向金收款单
     def inputBillDetail(self,contractCode):
         self.contractCode = contractCode
         self.find_element(*self.add_bill_loc).click()
@@ -60,7 +61,27 @@ class NewOrderPage(Page):
         self.find_element(*self.billAmt_loc).clear()
         self.find_element(*self.billAmt_loc).send_keys(20000)
         self.find_element(*self.memo_loc).clear()
-        self.find_element(*self.memo_loc).send_keys('自动化测试-创建收款单')
+        self.find_element(*self.memo_loc).send_keys('自动化测试-创建意向金收款单')
+        self.find_element(*self.bill_submit_loc).click()
+
+     #创建服务费收款单
+    trans_type_loc = 'selDealType'
+    def inputServiceBillDetail(self,contractCode):
+        self.contractCode = contractCode
+        self.find_element(*self.add_bill_loc).click()
+        self.switchWindow()
+        self.switchToOneFrameByXpath(self.new_bill_frame_loc)
+        self.find_element(*self.contract_code_loc).clear()
+        self.find_element(*self.contract_code_loc).send_keys(contractCode)
+        time.sleep(1)
+        self.find_element(*self.select_contract_loc).click()
+        self.find_element(*self.billcode_loc).clear()
+        self.find_element(*self.billcode_loc).send_keys('D10000124')
+        self.getDropdownMenuById(self.trans_type_loc,2)
+        self.find_element(*self.billAmt_loc).clear()
+        self.find_element(*self.billAmt_loc).send_keys(20000)
+        self.find_element(*self.memo_loc).clear()
+        self.find_element(*self.memo_loc).send_keys('自动化测试-创建服务费收款单')
         self.find_element(*self.bill_submit_loc).click()
 
     #收款单结算
@@ -90,6 +111,14 @@ class NewOrderPage(Page):
         self.ContractCode = ContractCode
         self.openBillReceiptPage()
         self.inputBillDetail(ContractCode)
+        time.sleep(1)
+        self.close_alert()
+        time.sleep(1)
+
+    def createServiceBill(self,ContractCode = 'NHY05122017000072'):
+        self.ContractCode = ContractCode
+        self.openBillReceiptPage()
+        self.inputServiceBillDetail(ContractCode)
         time.sleep(1)
         self.close_alert()
         time.sleep(1)
