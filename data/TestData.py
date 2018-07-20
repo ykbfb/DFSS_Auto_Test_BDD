@@ -18,7 +18,7 @@ class Data:
     city = 'suzhou'
 
 #===============客户详情=========================================
-    lnk_moblie = '15928369517'
+    lnk_moblie = '15928369518'
     sub_s = lnk_moblie[7:]
     lnk_name = '自动化联系人' + sub_s
     cmp_name = '需求书修改有限公司'+ lnk_moblie
@@ -29,8 +29,8 @@ class Data:
     finance_name = 'sunquan'
     ctr_reject_memo = '自动化测试打回合同'
     ctr_discar_memo = '自动化测试作废合同'
-    ContractCode = 'HY05122018000017'
-    #ContractCode ='WB05122018000207'
+    #ContractCode = 'HY05122018000018'
+    ContractCode ='WB05122018000207'
 
 #===============融资订单=========================================
     #意向单
@@ -62,7 +62,7 @@ class Data:
     force_clt_name = '需求书修改有限公司106'
 
     #销售喜报
-    sal_clt_name = '需求书修改有限公司124'
+    sal_clt_name = '需求书修改有限公司15928369515'
 
     #紧急退费
     ur_clt_name = '需求书修改有限公司106'

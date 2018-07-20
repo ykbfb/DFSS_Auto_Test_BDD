@@ -26,7 +26,7 @@ class SalesResultsTests(myunit.MyTest):
         login(self.driver).user_login(username, password, city)
 
 #=======================================================================================================
-    # 顾问创建新退款
+    # 顾问创建销售喜报
     def test_1_createSalesResult_Sales(self):
         self.user_login_verify()
         sales_results = SalesBargainPage(self.driver)
