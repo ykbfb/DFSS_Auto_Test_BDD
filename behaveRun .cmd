@@ -1,3 +1,19 @@
 cd F:\DFSS_Auto_Test_BDD
 F:
-behave
+behave --tags=user_login
+behave --tags=createNewClient
+behave --tags=modify_lnk
+behave --tags=finance_book
+behave --tags=create_come_intview
+behave --tags=approve_intview
+behave --tags=create_vip_contract
+behave --tags=create_vip_contract
+behave --tags=arc_vip_contract_cmp
+behave --tags=bill_recept
+behave --tags=create_salesOrder_cmp
+behave --tags=salesOrder_oprate
+behave --tags=my_order
+behave --tags=apprv_channelresult
+behave --tags=share_client
+behave --tags=del_client
+behave --tags=cus_call
