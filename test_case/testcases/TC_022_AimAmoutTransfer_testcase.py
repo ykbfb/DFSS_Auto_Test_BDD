@@ -4,7 +4,7 @@
 
 '''
 Created on 2018-01-04
-@author: Administrator
+@author: kun yang
 '''
 import unittest, sys
 
@@ -30,7 +30,7 @@ class ServiceOrderTests(myunit.MyTest):
     def aa_test_0001_createAimAmtTransfer(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
-        my_client.gotoMyClientList_All(Data.aim_clt_phone)
+        my_client.gotoMyClientList_All(Data.lnk_moblie)
 
         aim_trans = AimTransPage(self.driver)
         aim_trans.createAimTransfer()
@@ -43,7 +43,7 @@ class ServiceOrderTests(myunit.MyTest):
         self.user_login_verify(Data.sales_manager,'123456',Data.city)
 
         aim_trans = AimTransPage(self.driver)
-        aim_trans.approveAimTransfer(Data.aim_clt_phone)
+        aim_trans.approveAimTransfer(Data.lnk_moblie)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_SalesManager.png")
         aim_trans.close()
@@ -53,7 +53,7 @@ class ServiceOrderTests(myunit.MyTest):
         self.user_login_verify(Data.sales_director,'123456',Data.city)
 
         aim_trans = AimTransPage(self.driver)
-        aim_trans.approveAimTransfer_Director(Data.aim_clt_phone)
+        aim_trans.approveAimTransfer_Director(Data.lnk_moblie)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_Director.png")
         aim_trans.close()
@@ -63,7 +63,7 @@ class ServiceOrderTests(myunit.MyTest):
         self.user_login_verify(Data.div_manager,'123456',Data.city)
 
         aim_trans = AimTransPage(self.driver)
-        aim_trans.approveAimTransfer_DivManager(Data.aim_clt_phone)
+        aim_trans.approveAimTransfer_DivManager(Data.lnk_moblie)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_DivManager.png")
         aim_trans.close()
@@ -73,9 +73,11 @@ class ServiceOrderTests(myunit.MyTest):
         self.user_login_verify('longlixia','123456','shanghai')
 
         aim_trans = AimTransPage(self.driver)
-        aim_trans.approveAimTransfer_DataManager(Data.aim_clt_phone)
+        aim_trans.approveAimTransfer_DataManager(Data.lnk_moblie)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_DataManager.png")
         aim_trans.close()
+
+
 if __name__ == '__main__':
     unittest.main()

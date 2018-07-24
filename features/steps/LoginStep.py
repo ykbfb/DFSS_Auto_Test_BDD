@@ -39,29 +39,38 @@ def quitBrowser(context):
 @Given('销售顾问登录融管系统')
 def step_loginSystem(context): #融资顾问登录融管系统
     lg = login(context.driver)
-    lg.user_login_verify(Data.sales,'123456','suzhou')
+    lg.user_login_verify(Data.sales,'123456',Data.city)
 
 @Given('销售经理登录融管系统')
 def step_loginSystem(context):
     lg = login(context.driver)
-    lg.user_login_verify(Data.sales_manager,'123456','suzhou')
+    lg.user_login_verify(Data.sales_manager,'123456',Data.city)
+
+@Given('销售总监登录融管系统')
+def step_loginSystem(context):
+    lg = login(context.driver)
+    lg.user_login_verify(Data.sales_director,'123456',Data.city)
 
 @Given('分公司财务登录融管系统')
 def step_finLogin(context):
     lg = login(context.driver)
-    lg.user_login_verify(Data.finance_name,'123456','suzhou')
+    lg.user_login_verify(Data.finance_name,'123456',Data.city)
 
 @Given('融服登录融管系统')
 def step_serviceLogin(context):
     lg = login(context.driver)
-    lg.user_login_verify(Data.service_manager,'123456','suzhou')
+    lg.user_login_verify(Data.service_manager,'123456',Data.city)
     time.sleep(1)
 
 @Given('融服总监登录融管')
 def step_serviceDirctorLogin(context):
     lg = login(context.driver)
-    lg.user_login_verify(Data.ser_director_manager,'123456','suzhou')
+    lg.user_login_verify(Data.ser_director_manager,'123456',Data.city)
 
+@Given('分公司总经理登录融管')
+def step_serviceDirctorLogin(context):
+    lg = login(context.driver)
+    lg.user_login_verify(Data.div_manager,'123456',Data.city)
 
 @Given('数据专员登录融管')
 def step_dataManagerLogin(context):
