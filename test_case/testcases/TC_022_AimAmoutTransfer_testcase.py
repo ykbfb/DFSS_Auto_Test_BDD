@@ -13,7 +13,7 @@ sys.path.append("./page_obj")
 from test_case.models import myunit, functions
 from test_case.page_obj.loginPage import login
 from test_case.page_obj.myClientsPage import myClient
-from test_case.page_obj.AimRefundTransferPage import AimRefundTransPage
+from test_case.page_obj.AimTransferPage import AimTransPage
 from data.TestData import Data
 import time
 
@@ -32,7 +32,7 @@ class ServiceOrderTests(myunit.MyTest):
         my_client = myClient(self.driver)
         my_client.gotoMyClientList_All(Data.aim_clt_phone)
 
-        aim_trans = AimRefundTransPage(self.driver)
+        aim_trans = AimTransPage(self.driver)
         aim_trans.createAimTransfer()
 
         functions.insert_img(self.driver, current_time + "__aim_transfer.png")
@@ -42,7 +42,7 @@ class ServiceOrderTests(myunit.MyTest):
     def aa_test_0002_approveAimAmtTransfer_SalesManager(self):
         self.user_login_verify(Data.sales_manager,'123456',Data.city)
 
-        aim_trans = AimRefundTransPage(self.driver)
+        aim_trans = AimTransPage(self.driver)
         aim_trans.approveAimTransfer(Data.aim_clt_phone)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_SalesManager.png")
@@ -52,7 +52,7 @@ class ServiceOrderTests(myunit.MyTest):
     def aa_test_0003_approveAimAmtTransfer_Director(self):
         self.user_login_verify(Data.sales_director,'123456',Data.city)
 
-        aim_trans = AimRefundTransPage(self.driver)
+        aim_trans = AimTransPage(self.driver)
         aim_trans.approveAimTransfer_Director(Data.aim_clt_phone)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_Director.png")
@@ -62,7 +62,7 @@ class ServiceOrderTests(myunit.MyTest):
     def aa_test_0004_approveAimAmtTransfer_DivManager(self):
         self.user_login_verify(Data.div_manager,'123456',Data.city)
 
-        aim_trans = AimRefundTransPage(self.driver)
+        aim_trans = AimTransPage(self.driver)
         aim_trans.approveAimTransfer_DivManager(Data.aim_clt_phone)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_DivManager.png")
@@ -72,7 +72,7 @@ class ServiceOrderTests(myunit.MyTest):
     def test_0005_approveAimAmtTransfer_DataManager(self):
         self.user_login_verify('longlixia','123456','shanghai')
 
-        aim_trans = AimRefundTransPage(self.driver)
+        aim_trans = AimTransPage(self.driver)
         aim_trans.approveAimTransfer_DataManager(Data.aim_clt_phone)
 
         functions.insert_img(self.driver, current_time + "__approve_aim_transfer_DataManager.png")

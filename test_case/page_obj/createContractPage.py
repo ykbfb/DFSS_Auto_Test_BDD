@@ -84,18 +84,24 @@ class NewContractPage(Page):
     isassigned_loc = '//*[@id="form1"]/table/tbody/tr[12]/th/span'
     bank1_loc = (By.ID,'bankCard')#银行卡号1
     phone1_loc = (By.ID,'bankCardPhone')#银行卡对应手机号1
+    accont_bank1_loc = (By.ID,'openBank1')#开户银行1
     bank2_loc = (By.ID,'bankCard2')#银行卡号2
     phone2_loc = (By.ID,'bankCardPhone2')#银行卡对应手机号2
+    accont_bank2_loc = (By.ID,'openBank2')#开户银行2
     bank3_loc = (By.ID,'bankCard3')#银行卡号3
     phone3_loc = (By.ID,'bankCardPhone3')#银行卡对应手机号3
+    accont_bank3_loc = (By.ID,'openBank3')#开户银行3
     def inputAgreementDetail(self):
         self.scrollToElement('xpath',self.isassigned_loc)
         self.input_value(self.bank1_loc,'6225142536475869000')
         self.input_value(self.phone1_loc,'13247586921')
+        self.input_value(self.accont_bank1_loc,'中国工商银行太仓支行')
         self.input_value(self.bank2_loc,'6225142536475869001')
         self.input_value(self.phone2_loc,'13247586922')
+        self.input_value(self.accont_bank2_loc,'中国建设银行西湖支行')
         self.input_value(self.bank3_loc,'6225142536475869002')
         self.input_value(self.phone3_loc,'13247586923')
+        self.input_value(self.accont_bank3_loc,'中国交通银行罗山支行')
 
     #备注
     contract_memo_loc = (By.ID,'txtMemo')
@@ -130,7 +136,7 @@ class NewContractPage(Page):
     uploadBtn2 = (By.ID, 'btnUpload_picker2')
     uploadBtn3 = (By.ID, 'btnUpload_picker3')
     uploadBtn4 = (By.ID,'btnUpload_pickerSignFile')
-    uploadBtn5 = (By.ID,'btnUpload_pickerIdCardFile')
+    #uploadBtn5 = (By.ID,'btnUpload_pickerIdCardFile')
     uploadBtn6 = (By.ID,'btnUpload_pickerBankCardFile')
     uploadBtn7 = (By.ID,'btnUpload_pickerContractPaperFile')
     moveto_btn3_loc = 'btnUpload_picker3'
@@ -165,10 +171,10 @@ class NewContractPage(Page):
         self.waitElmentUntill(20,self.uploadBtn4)
         time.sleep(1)
         self.click_element(*self.uploadBtn4)
-        self.uploadFile2(self.elem5,self.file_path)
-        self.waitElmentUntill(20,self.uploadBtn5)
-        time.sleep(1)
-        self.click_element(*self.uploadBtn5)
+        # self.uploadFile2(self.elem5,self.file_path)
+        # self.waitElmentUntill(20,self.uploadBtn5)
+        # time.sleep(1)
+        # self.click_element(*self.uploadBtn5)
         self.uploadFile2(self.elem6,self.file_path)
         self.waitElmentUntill(20,self.uploadBtn6)
         time.sleep(1)

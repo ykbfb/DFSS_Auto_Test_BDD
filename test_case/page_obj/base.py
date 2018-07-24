@@ -10,7 +10,9 @@ from selenium.webdriver import ActionChains
 #from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import random
@@ -245,6 +247,12 @@ class Page(object):
             print("move to element success: ", target)
         else:
             print("can't find the element, please select the correct way: id, name, xpath, CSS, class_name")
+
+    def scrollToElement_new(self, *target):  # getWay元素定位的方式； target元素属性名称（id,name,xpath...）
+        self.target = target
+        target_element = self.find_element(*target)
+        self.driver.execute_script("arguments[0].scrollIntoView();", target_element)  # 拖动到可见的元素去
+        print("move to element success: ", target)
 
 #=======================================================================================================================================
     #删除浏览器缓存

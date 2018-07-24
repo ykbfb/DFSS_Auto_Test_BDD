@@ -20,7 +20,7 @@ from selenium.webdriver.common.by import By
 from .base import Page
 import time
 
-class AimRefundTransPage(Page):
+class AimTransPage(Page):
     # 合同管理
     contract_tab_loc = (By.XPATH,'//*[@id="bottomTabs_htgl"]/a')
     botom_frame_loc = 'bottomTabs_Content_Iframe'

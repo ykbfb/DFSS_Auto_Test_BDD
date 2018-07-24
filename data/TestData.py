@@ -13,12 +13,14 @@ class Data:
 #===============测试角色=========================================
     sales = 'yanfang'  #融资顾问
     sales_manager= 'wangweiwei' #销售经理
+    sales_director = 'pengxiaoli'#销售总监
     service_manager = 'xuweilan'#融服经理
     ser_director_manager = 'yanghongyuan'#融资总监
+    div_manager = 'renyuan' #分总
     city = 'suzhou'
 
 #===============客户详情=========================================
-    lnk_moblie = '15928369518'
+    lnk_moblie = '15928369519'
     sub_s = lnk_moblie[7:]
     lnk_name = '自动化联系人' + sub_s
     cmp_name = '需求书修改有限公司'+ lnk_moblie
@@ -29,8 +31,8 @@ class Data:
     finance_name = 'sunquan'
     ctr_reject_memo = '自动化测试打回合同'
     ctr_discar_memo = '自动化测试作废合同'
-    #ContractCode = 'HY05122018000018'
-    ContractCode ='WB05122018000207'
+    ContractCode = 'HY05122018000018'
+    #ContractCode ='WB05122018000207'
 
 #===============融资订单=========================================
     #意向单
@@ -66,6 +68,9 @@ class Data:
 
     #紧急退费
     ur_clt_name = '需求书修改有限公司106'
+
+    #意向金转业绩
+    aim_clt_phone = '13862281068'
 
 #==========================================================================================================
 #    执行feature 文件的标签（tags）顺序
