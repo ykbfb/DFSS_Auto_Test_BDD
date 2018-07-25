@@ -96,6 +96,7 @@ class createClient(Page):
         self.selectCltExeStatus()
         self.selectLoanArea()
         self.saveClient()
+        time.sleep(1)
 
     # --===========================================================================================
     # 验证case的执行结果
