@@ -48,6 +48,7 @@ class RefundPage(Page):
     moveto_refund_amt_loc = 'refundAmount'
     bank_loc = (By.ID,'txtBank')#开户网点
     account_loc = (By.ID,'txtAccount')#银行账户
+    account_name_loc = (By.ID,'txtAccountName')#账户名
     material_loc = (By.ID,'ccb1')#资料
     refund_reason_loc = (By.ID,'txtRefundReason')#退款原因
     moveto_refund_reason_loc = 'txtRefundReason'
@@ -58,6 +59,7 @@ class RefundPage(Page):
         self.input_value(self.refund_amt_loc,100)
         self.input_value(self.bank_loc,'自动化测试：自动化测试银行茉莉花支行')
         self.input_value(self.account_loc,'8888888888888888888')
+        self.input_value(self.account_name_loc,'自动花花')
         self.click_element(*self.material_loc)
         self.scrollToElement('id',self.moveto_refund_reason_loc)
         self.input_value(self.refund_reason_loc,'自动化测试： 会员费退费')
@@ -119,8 +121,8 @@ class RefundPage(Page):
 #=================================================================================================================
     #分总审批新退费
     div_sales_manage_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[1]/div[1]')#分总--【销售管理】
-    moveto_div_refund_loc = '//*[@id="wnav"]/div[2]/div[2]/ul/li[17]/div/a/span[2]'#新退费审批
-    div_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[17]/div/a/span[2]')#
+    moveto_div_refund_loc = '//*[@id="wnav"]/div[2]/div[2]/ul/li[16]/div/a/span[2]'#新退费审批
+    div_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[16]/div/a/span[2]')#
 
     def approveRefund_DivManager(self,clt_name):
         self.clt_name = clt_name
@@ -253,8 +255,8 @@ class RefundPage(Page):
 
 #=============================================================================================
     #总部付款出纳审批新退费
-    center_cashier_menu_loc = (By.XPATH,'//*[@id="wnav"]/div[5]/div[1]/div[1]')#钱智总部付款出纳
-    cash_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[5]/div[2]/ul/li[6]/div/a/span[2]')#新退费申请
+    center_cashier_menu_loc = (By.XPATH,'//*[@id="wnav"]/div[6]/div[1]/div[1]')#钱智总部付款出纳
+    cash_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[6]/div[2]/ul/li[6]/div/a/span[2]')#新退费申请
 
     def approveRefund_Cashier(self,clt_name):
         self.clt_name = clt_name
@@ -264,7 +266,7 @@ class RefundPage(Page):
         time.sleep(2)
         self.switchToOneFrameByXpath(self.refund_apprv_frame_loc)
         self.input_value(self.clt_name_loc,clt_name)
-        # self.waitElmentUntill(10,self.d_search_loc)
+        self.waitElmentUntill(10,self.d_search_loc)
         self.click_element(*self.d_search_loc)
         time.sleep(2)
         self.click_element(*self.fin_apprv_loc)
@@ -294,11 +296,11 @@ class RefundPage(Page):
     aim_refund_amt_loc = (By.ID,'Amount')#退款金额
     aim_bank_loc = (By.ID,'txtBank')#开户网点
     aim_account_loc = (By.ID,'txtAccount')#银行账户
+    aim_account_name_loc = (By.ID,'txtAccountName')#账户名
     aim_material_loc = (By.ID,'ccb1')#资料情况
     moveto_aim_refund_reason_loc = 'txtReason'
     aim_refund_reason_loc = (By.ID,'txtReason')#意向金退款原因
-    aim_submit_loc = (By.XPATH,'//*[@id="divShow"]/table/tbody/tr[10]/td[2]/input[1]')#提交
-
+    aim_submit_loc = (By.XPATH,'//*[@id="divShow"]/table/tbody/tr[11]/td[2]/input[1]')#提交
 
     def openAimRefundPage(self):
         '''打开意向金退费'''
@@ -314,6 +316,7 @@ class RefundPage(Page):
         self.input_value(self.aim_refund_amt_loc,10)
         self.input_value(self.bank_loc,'自动化测试银行花旗支行')
         self.input_value(self.account_loc,'8888888888888888888')
+        self.input_value(self.account_name_loc,'自动花花')
         self.click_element(*self.aim_material_loc)
         self.scrollToElement('id',self.moveto_aim_refund_reason_loc)
         self.input_value(self.aim_refund_reason_loc,'自动化测试： 意向金退费')
@@ -346,7 +349,7 @@ class RefundPage(Page):
     pop_aimappv_frame_loc = "//iframe[contains(@id, 'layui-layer-iframe')]"
     moveto_aim_appv_memo = 'txt'
     aim_appv_memo = (By.NAME,'txt')#审批意见
-    aim_appv_pass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[10]/td[2]/input[1]')
+    aim_appv_pass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[11]/td[2]/input[1]')#通过
     aim_confirm_loc = (By.CLASS_NAME,'layui-layer-btn0')
 
     def inputAimAppvDetail_Dir(self):
@@ -367,8 +370,8 @@ class RefundPage(Page):
 
 #=========================================================================================================================
 # 分总审批意向金退费
-    moveto_div_aim_refund_loc = '//*[@id="wnav"]/div[2]/div[2]/ul/li[10]/div/a/span[2]'
-    div_aim_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[10]/div/a/span[2]')
+    moveto_div_aim_refund_loc = '//*[@id="wnav"]/div[2]/div[2]/ul/li[9]/div/a/span[2]'#意向金退费审批--分总
+    div_aim_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[9]/div/a/span[2]')
     def div_openAimAppvPage(self):
         '''打开审批数据'''
         self.click_element(*self.div_sales_manage_loc)
@@ -378,7 +381,7 @@ class RefundPage(Page):
         self.switchToOneFrameByXpath(self.aim_list_frame_loc)
         self.click_element(*self.aim_appv_btn_loc)
 
-    div_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[13]/td[2]/input[1]')
+    div_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[14]/td[2]/input[1]')#通过
     def inputAimAppvDetail_Div(self):
         '''分总--输入意向金审批详情'''
         self.switchWindow()
@@ -416,7 +419,7 @@ class RefundPage(Page):
 
     moveto_aim_recieptNo_loc = 'firstIntentionRefundToken'
     aim_recieptNo_loc = (By.ID, 'firstIntentionRefundToken')#退款收据号
-    fin_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[18]/td[2]/input[1]')#通过
+    fin_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[19]/td[2]/input[1]')#通过
     def inputAimRefundApproveDetail_Fin(self):
         '''分公司财务输入审批意见'''
         self.switchToOneFrameByXpath(self.refund_pop_frame_loc)
@@ -445,7 +448,7 @@ class RefundPage(Page):
         self.switchWindow()
         self.inputAimApproveDetail_Acc()
 
-    acc_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[19]/td[2]/input[1]')#通过
+    acc_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[20]/td[2]/input[1]')#通过
     def inputAimApproveDetail_Acc(self):
         '''总部应收会计输入审批意见'''
         self.switchToOneFrameByXpath(self.refund_pop_frame_loc)
@@ -458,20 +461,20 @@ class RefundPage(Page):
 
 #=============================================================================================
     #总部付款出纳审批意向金退费
-    pay_aim_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[5]/div[2]/ul/li[3]/div/a/span[2]')#外包意向金退费审批
+    pay_aim_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[6]/div[2]/ul/li[3]/div/a/span[2]')#外包意向金退费审批
 
     def approveAimRefund_Cashier(self):
         self.click_element(*self.center_cashier_menu_loc)
         self.click_element(*self.pay_aim_refund_loc)
         self.setWaitTime(5)
-        time.sleep(2)
+        time.sleep(1)
         self.switchToOneFrameByXpath(self.refund_apprv_frame_loc)
         self.click_element(*self.fin_apprv_loc)
         time.sleep(1)
         self.switchWindow()
         self.inputAimApproveDetail_Cash()
 
-    cashier_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[22]/td[2]/input[1]')#通过
+    cashier_aim_appvpass_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[23]/td[2]/input[1]')#通过
     def inputAimApproveDetail_Cash(self):
         '''总部付款出纳输入意向金审批意见'''
         self.switchToOneFrameByXpath(self.refund_pop_frame_loc)
@@ -489,7 +492,7 @@ class RefundPage(Page):
 #=======================================================================================================================
 # 分总发起紧急退费
     moveto_div_urgency_refund_loc = '//*[@id="wnav"]/div[2]/div[2]/ul/li[18]/div/a/span[2]'
-    div_urgency_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[18]/div/a/span[2]')#紧急退费发起
+    div_urgency_refund_loc = (By.XPATH,'//*[@id="wnav"]/div[2]/div[2]/ul/li[17]/div/a/span[2]')#紧急退费发起
     div_urgency_list_frame_loc = '//*[@id="tabs"]/div[2]/div[2]/div/iframe'
     fuzzy_search_loc = (By.ID,'txtCheck')#模糊查询
     d_ur_search_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[2]/td/div/input[3]')#查询
@@ -513,6 +516,7 @@ class RefundPage(Page):
     market_amt_loc = (By.ID,'txtOpRes')#市场业绩
     clt_bank_loc = (By.ID,'txtBank')#开户网点
     bank_account_loc = (By.ID,'txtAccount')#银行账户
+    bank_account_name_loc = (By.ID,'txtAccountName')#账户名
     ur_material_loc = (By.ID,'ccb3')#特例退款承诺书
     moveto_ur_refund_reason_loc = 'txtReason'
     ur_refund_reason_loc = (By.ID,'txtReason')#退款原因
@@ -526,6 +530,7 @@ class RefundPage(Page):
         #self.input_value(self.market_amt_loc,50)
         self.input_value(self.clt_bank_loc,'花旗银行湖心支行')
         self.input_value(self.bank_account_loc,'666666668888888')
+        self.input_value(self.bank_account_name_loc,'自动花花')
         self.click_element(*self.ur_material_loc)
         self.scrollToElement('id',self.moveto_ur_refund_reason_loc)
         self.input_value(self.ur_refund_reason_loc,'自动化测试：紧急退费')
@@ -644,7 +649,7 @@ class RefundPage(Page):
 
 #=======================================================================================================================
   #总部付款出纳审批紧急退费
-    pay_ur_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[5]/div[2]/ul/li[4]/div/a/span[2]')#紧急退费审批
+    pay_ur_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[6]/div[2]/ul/li[4]/div/a/span[2]')#紧急退费审批
 
     def approveUrgencyRefund_Cashier(self,clt_name):
         self.clt_name = clt_name
@@ -653,6 +658,7 @@ class RefundPage(Page):
         self.setWaitTime(5)
         self.switchToOneFrameByXpath(self.ur_list_frame_loc)
         self.input_value(self.ur_clt_name_loc,clt_name)
+        self.waitElmentUntill(10,self.ur_search_loc)
         self.click_element(*self.ur_search_loc)
         time.sleep(1)
         self.click_element(*self.ur_apprv_loc)
@@ -766,18 +772,19 @@ class RefundPage(Page):
 
     for_refund_pop_frame_loc = "//iframe[contains(@id, 'layui-layer-iframe')]"
     for_refund_amt_loc = (By.ID,'refundAmount')#退费金额
+    for_refund_account_name_loc = (By.ID,'txtAccountName')#账户名
     for_refund_reason_loc = (By.ID,'txtReason')#退费原因
     complain_content_loc = (By.ID,'txtComplant')#投诉内容
-    moveto_for_submit_loc = '//*[@id="main"]/table/tbody/tr[12]/td/input[2]'
-    for_submit_loc = (By.XPATH,'//*[@id="main"]/table/tbody/tr[12]/td/input[2]')#提交
+    for_submit_loc = (By.ID,'btnSub')#提交
 
     def inputForceRefundDetail(self):
         self.switchWindow()
         self.switchToOneFrameByXpath(self.for_refund_pop_frame_loc)
         self.input_value(self.for_refund_amt_loc,100)
+        self.input_value(self.for_refund_account_name_loc,'自动化：琳琳')
         self.input_value(self.for_refund_reason_loc,'自动化测试：强制退费创建--客服专员')
         self.input_value(self.complain_content_loc,'自动化测试：客户不满意，要求强制退费')
-        self.scrollToElement('xpath',self.moveto_for_submit_loc)
+        self.scrollToElement_new(*self.for_submit_loc)
         self.click_element(*self.for_submit_loc)
         time.sleep(1)
         self.close_alert()
@@ -947,7 +954,7 @@ class RefundPage(Page):
 
 #=======================================================================================================================
   #总部付款出纳审批紧急退费
-    pay_for_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[5]/div[2]/ul/li[5]/div/a/span[2]')#投诉强制退费审批
+    pay_for_refund_loc =(By.XPATH, '//*[@id="wnav"]/div[6]/div[2]/ul/li[5]/div/a/span[2]')#投诉强制退费审批
 
     def approveForceRefund_Cashier(self,clt_name):
         self.clt_name = clt_name

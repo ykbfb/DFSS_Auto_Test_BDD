@@ -77,6 +77,43 @@ def step_dataManagerLogin(context):
     lg = login(context.driver)
     lg.user_login_verify('longlixia', '123456', 'shanghai')
 
+@Given('融资中心总经理登录融管')
+def step_dataManagerLogin(context):
+    lg = login(context.driver)
+    lg.user_login_verify('zhangyu1087', '123456', 'shanghai')
+
+
+@Given("总部应收会计登录融管系统")
+def step_impl(context):
+    lg = login(context.driver)
+    lg.user_login_verify('duanxuesa', '123456', 'shanghai')
+
+
+@Given("CFO登录融管系统")
+def step_impl(context):
+    lg = login(context.driver)
+    lg.user_login_verify('lingju', '123456', 'shanghai')
+
+
+@Given("总部付款出纳登录融管系统")
+def step_impl(context):
+    lg = login(context.driver)
+    lg.user_login_verify('yangshuai', '123456', 'shanghai')
+
+@Given("客服专员登录融管系统")
+def step_impl(context):
+    lg = login(context.driver)
+    lg.user_login_verify('chenxiang5134', '123456', 'shanghai')
+
+@Given("客服总监登录融管系统")
+def step_impl(context):
+    lg = login(context.driver)
+    lg.user_login_verify('liujianlin', '123456', 'shanghai')
+
+
+
+
+
 
 
 
