@@ -11,7 +11,7 @@ import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('打开【财务】→【销售喜报审批】页面，选择指定的销售喜报，点击【详情】按钮，输入“审批意见”点击【通过】按钮')
 def step_finApproveSalesResult(context):

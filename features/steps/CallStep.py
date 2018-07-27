@@ -10,7 +10,7 @@ from data.TestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('进入【我的客户】列表页，选择客户双击，并在呼叫详情页输入呼叫详情，点击【保存】')
 def step_dubleClickCall(context):

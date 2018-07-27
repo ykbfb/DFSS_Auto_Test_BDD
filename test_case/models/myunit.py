@@ -16,6 +16,9 @@ import os
 
 
 class MyTest(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        unittest.TestCase.__init__(self, *args, **kwargs)
+
     def setUp(self):
         self.driver = broswer()
         self.driver.implicitly_wait(10)

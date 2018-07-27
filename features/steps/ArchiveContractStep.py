@@ -10,7 +10,7 @@ import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 
 @When('以：{archive_type}名义归档{contract_type}合同，进入【财务】-【合同审批发放】-【未归档】页面选择合同并点击【归档】按钮')

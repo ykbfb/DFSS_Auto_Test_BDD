@@ -11,7 +11,7 @@ import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('进入【合同管理】页签点击【创建合同】按钮，选择【债权会员合同】并输入会员合同信息详情')
 def step_inputVIPContractDetail(context):

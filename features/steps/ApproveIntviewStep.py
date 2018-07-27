@@ -11,7 +11,7 @@ import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 
 @When('审批邀约')

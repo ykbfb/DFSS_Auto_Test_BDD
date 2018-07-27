@@ -12,6 +12,7 @@ Created on 2017-4-25
 from selenium import webdriver
 import os
 import time
+import csv
 
 
 
@@ -52,6 +53,10 @@ def insert_img(driver,file_name):
 #     #保存文件截图
 #     driver.get_screenshot_as_file(file_path)
 #--=========================================================
+#读取测试数据
+def readData(data_file):
+    # data_file = r"F:\DFSS_Auto_Test_BDD\data\TestData.csv"
+    return csv.reader(open(data_file,'r'))
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()

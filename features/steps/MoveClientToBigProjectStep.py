@@ -9,7 +9,7 @@ from data.TestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('创建大项目新客户')
 def step_createNewClient(context):

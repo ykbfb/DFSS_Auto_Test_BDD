@@ -11,7 +11,7 @@ from selenium import webdriver
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('查询客户')
 def step_searchClient(context):

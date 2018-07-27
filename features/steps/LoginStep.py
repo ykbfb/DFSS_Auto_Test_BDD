@@ -11,7 +11,7 @@ import time
 from test_case.page_obj.loginPage import login
 from data.TestData import Data
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @Given('打开登录页面: {loginurl}')
 def step_openLoginPage(context,loginurl):

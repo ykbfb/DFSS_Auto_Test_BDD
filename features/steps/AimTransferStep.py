@@ -10,7 +10,7 @@ from data.TestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 
 @When('打开【我的客户】，列表中选择客户，在【合同管理】中点击【转业绩】按钮，并填写转业绩详情,提交')

@@ -10,7 +10,7 @@ import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
+current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 @When('进入【出纳】-【收款单管理】点击【新增】按钮，交易类型选择：{trans_type}，创建收款单')
 def step_createBillReceipt(context,trans_type):

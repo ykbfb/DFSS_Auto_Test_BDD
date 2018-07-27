@@ -80,8 +80,8 @@ class login(Page):
     username_error_hint_loc = (By.XPATH,'//*[@id="main"]/div[1]/form/div/ul/li')
     password_error_hint_loc = (By.XPATH,'//*[@id="main"]/div[1]/form/div/ul/li')
     city_error_hint_loc = (By.XPATH,'//*[@id="main"]/div[1]/form/div/ul/li')
-    user_login_success_loc = (By.XPATH,'//*[@id="Main_Page"]/div[1]/div/div/span[3]/label/span[1]')
-    
+    user_login_success_loc = (By.XPATH,'//*[@id="Main_Page"]/div[1]/div/div/span[3]/label')
+
     #用户名为空
     def username_empty_hint(self): 
         return self.find_element(*self.username_empty_hint_loc).text
