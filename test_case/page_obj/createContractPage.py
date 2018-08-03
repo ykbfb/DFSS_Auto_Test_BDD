@@ -201,6 +201,7 @@ class NewContractPage(Page):
         self.switchWindow()
         time.sleep(1)
         self.switchToOneFrameByXpath(self.pop_new_frame_loc)
+        #eee
 
 
 #==============================================================================================================================================
