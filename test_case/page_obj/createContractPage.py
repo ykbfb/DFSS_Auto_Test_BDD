@@ -125,7 +125,8 @@ class NewContractPage(Page):
     elem5 = (By.XPATH,'//*[@id="pickerIdCardFile"]/div[2]/input')
     elem6 = (By.XPATH,'//*[@id="pickerBankCardFile"]/div[2]/input')
     elem7 = (By.XPATH,'//*[@id="pickerContractPaperFile"]/div[2]/input')
-    file_path = 'F:\PyhtonTest\girl.jpg'
+    elem8 = (By.XPATH,'//*[@id="pickerInfoServiceFile"]/div[2]/input')
+    file_path = 'G:\PyhtonTest\girl.jpg'
 
 
     # uploadBtn = (By.ID,'btnUp')
@@ -136,9 +137,8 @@ class NewContractPage(Page):
     uploadBtn2 = (By.ID, 'btnUpload_picker2')
     uploadBtn3 = (By.ID, 'btnUpload_picker3')
     uploadBtn4 = (By.ID,'btnUpload_pickerSignFile')
-    #uploadBtn5 = (By.ID,'btnUpload_pickerIdCardFile')
     uploadBtn6 = (By.ID,'btnUpload_pickerBankCardFile')
-    uploadBtn7 = (By.ID,'btnUpload_pickerContractPaperFile')
+    uploadBtn8 = (By.ID,'btnUpload_pickerInfoServiceFile')
     moveto_btn3_loc = 'btnUpload_picker3'
 
 
@@ -156,8 +156,8 @@ class NewContractPage(Page):
     def uploadContractFile(self):
         self.uploadFile2(self.elem1,self.file_path)
         self.click_element(*self.uploadBtn)
+        time.sleep(5)
         self.waitElmentUntill(50,self.elem2)
-        time.sleep(2)
         self.uploadFile2(self.elem2,self.file_path)
         self.waitElmentUntill(20,self.uploadBtn2)
         time.sleep(1)
@@ -171,20 +171,15 @@ class NewContractPage(Page):
         self.waitElmentUntill(20,self.uploadBtn4)
         time.sleep(1)
         self.click_element(*self.uploadBtn4)
-        # self.uploadFile2(self.elem5,self.file_path)
-        # self.waitElmentUntill(20,self.uploadBtn5)
-        # time.sleep(1)
-        # self.click_element(*self.uploadBtn5)
         self.uploadFile2(self.elem6,self.file_path)
         self.waitElmentUntill(20,self.uploadBtn6)
         time.sleep(1)
         self.click_element(*self.uploadBtn6)
-        self.uploadFile2(self.elem7,self.file_path)
-        self.waitElmentUntill(20,self.uploadBtn7)
+        self.uploadFile2(self.elem8,self.file_path)
+        self.waitElmentUntill(20,self.uploadBtn8)
         time.sleep(1)
-        self.click_element(*self.uploadBtn7)
+        self.click_element(*self.uploadBtn8)
         time.sleep(1)
-
 
 
     #提交合同
@@ -204,7 +199,6 @@ class NewContractPage(Page):
         time.sleep(1)
         self.find_element(*self.change_VIPContract_loc).click()
         self.switchWindow()
-        # self.maxWindowByJs()
         time.sleep(1)
         self.switchToOneFrameByXpath(self.pop_new_frame_loc)
 
@@ -225,7 +219,7 @@ class NewContractPage(Page):
         self.submitContract()
         time.sleep(3)
         self.close_alert()
-        time.sleep(3)
+        time.sleep(1)
 
     #合同创建完毕回到合同列表页
     def gobackToContractlist(self):

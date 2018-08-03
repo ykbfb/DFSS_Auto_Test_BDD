@@ -78,7 +78,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #创建意向单
     #@unittest.Myskip
-    def aa_test_0004_createAimOrder(self):
+    def test_0004_createAimOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -95,7 +95,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #创建子订单
     #@unittest.Myskip
-    def aa_test_0005_createSubOrder(self):
+    def test_0005_createSubOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -111,7 +111,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #子订单【贷前辅导】转入【机构审批】
     #@unittest.Myskip
-    def aa_test_0006_moveSubOrderToOrgApproval(self):
+    def test_0006_moveSubOrderToOrgApproval(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -174,7 +174,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #【机构审批】--子订单成交，提交放款喜报
     #@unittest.Myskip
-    def test_0010_submitChanelResult(self):
+    def aa_test_0010_submitChanelResult(self):
         self.user_login_verify()
         time.sleep(2)
         b = Page(self.driver)

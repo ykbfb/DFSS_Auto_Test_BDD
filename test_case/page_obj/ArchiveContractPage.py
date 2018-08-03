@@ -63,8 +63,8 @@ class ArchiveContractPage(Page):
         self.find_element(*self.signForCompany_loc).click()
         self.scrollToElement('id',self.archive_btn)
         self.find_element(*self.archive_btn_loc).click()
-        time.sleep(1)
-        self.close_alert()
+        # time.sleep(1)
+        # self.close_alert()
 
     def archiveContractForCMP_BPO(self):
         '''外包合同归档'''

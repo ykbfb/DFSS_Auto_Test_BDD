@@ -51,6 +51,7 @@ class ApproveIntviewPage(Page):
         self.click_element(*self.need_appv_loc)
         time.sleep(2)
         self.click_element(*self.intview_appv_btn_loc)
+        time.sleep(1)
         self.switchWindow()
         self.input_value(self.intview_appr_memo_loc,'自动化测试：邀约审批')
         self.click_element(*self.confirm_btn_loc)

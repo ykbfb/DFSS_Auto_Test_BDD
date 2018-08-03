@@ -27,28 +27,28 @@ class createNewClient(myunit.MyTest):
     # 测试创建客户-电话号码已经存在
     def test_1_verify_mobileNo_isExist(self):
         user = init.getUser('销售顾问')
-        self.user_login_verify(username=user[0],password =user[1],city=user[2])
+        self.user_login_verify(username=user['username'],password =user['password'],city=user['city'])
         new_client = createClient(self.driver)
         new_client.setWaitTime(2)
         new_client.open_rapidOperation()
         new_client.open_newClient()
         new_client.switchToNewClientFrame()
-        new_client.inputMobile(init.getClient('老客户')[0])
+        new_client.inputMobile(init.getClient('老客户')['lnk_mobile'])
         new_client.checkMobileIsDuplicate()
-        self.assertEqual(new_client.check_num_isExist(), init.getExpectedResult('客户已存在'))
+        self.assertEqual(new_client.check_num_isExist(), init.getExpectedResult('验证客户已存在'))
         functions.insert_img(self.driver, current_time + "__Client_isExist.png")
         new_client.close()
 
     #测试创建客户
-    def test_2_create_newClient(self):
+    def aa_test_2_create_newClient(self):
         user = init.getUser('销售顾问')
-        self.user_login_verify(username=user[0],password =user[1],city=user[2])
+        self.user_login_verify(username=user['username'],password =user['password'],city=user['city'])
         new_client = createClient(self.driver)
         new_client.setWaitTime(2)
         new_client.open_rapidOperation()
         new_client.open_newClient()
         new_client.switchToNewClientFrame()
-        new_client.inputMobile(init.getClient('新客户')[0])
+        new_client.inputMobile(init.getClient('新客户')['lnk_mobile'])
         new_client.checkMobileIsDuplicate()
         time.sleep(1)
         self.assertEqual(new_client.check_num_isExist(), init.getExpectedResult('客户不存在'))

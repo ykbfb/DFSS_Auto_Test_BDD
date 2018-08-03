@@ -19,25 +19,37 @@ class Data:
         self.role = role
         try:
             user = get_excel_specfied_row("BaseData.xls", "userInfo",role)
-            username = user[0][1]
-            password = user[0][2]
-            city = user[0][3]
-            return username,password,city
+            # username = user[0][1]
+            # password = user[0][2]
+            # city = user[0][3]
+            # return username,password,city
+            u = {
+            'username': user[0][1],
+            'password': user[0][2],
+            'city' : user[0][3]}
+            return u
         except:
             print('输入的角色错误')
 
 #===================================================================================================================================================
 # 初始化客户信息
 #===================================================================================================================================================
-    def getClient(self,clt_isexist):
+    def getClient(self, clt_isexist):
         self.clt_isexist = clt_isexist
         try:
             client = get_excel_specfied_row("BaseData.xls", "clientInfo",clt_isexist)
-            lnk_mobile = client[0][1]
-            lnk_name = client[0][4]
-            cmp_name = client[0][5]
-            ContractCode = client[0][6]
-            return lnk_mobile,lnk_name,cmp_name,ContractCode
+            a = {
+            'lnk_mobile' : client[0][1],
+            'lnk_name' : client[0][4],
+            'cmp_name' : client[0][5],
+            'ContractCode' : client[0][6]}
+            return a
+            # lnk_mobile = client[0][1]
+            # lnk_name = client[0][4]
+            # cmp_name = client[0][5]
+            # ContractCode = client[0][6]
+            # return lnk_mobile,lnk_name,cmp_name,ContractCode
+
         except:
             print('输入错误，请确认输入内容为：老客户 or 新客户')
 
@@ -58,7 +70,7 @@ class Data:
 
 if __name__ == '__main__':
     u = Data()
-    u1 = u.getExpectedResult('客户已存在')
-    print(u1)
+    u1 = u.getClient('新客户')
+    print(u1['lnk_mobile'])
     # print(Data.sales_manager)
 
