@@ -44,7 +44,7 @@ class ContractTests(myunit.MyTest):
         my_client.setWaitTime(2)
         my_client.close()
 
-    # 创建外包合同
+    # 创建普通外包合同
     def aa_test_2_createBPOContract(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
@@ -62,8 +62,27 @@ class ContractTests(myunit.MyTest):
         my_client.setWaitTime(2)
         my_client.close()
 
+    # 创建产线外包合同
+    def aa_test_3_createProductLineBPOContract(self):
+        self.user_login_verify()
+        my_client = myClient(self.driver)
+        my_client.gotoMyClientList_All(Data.lnk_moblie)
+        my_client.setWaitTime(2)
+
+        contract_page = NewContractPage(self.driver)
+        contract_page.create_productline_BPOContract()
+        functions.insert_img(self.driver, current_time + "__createPrdLineBPOContract.png")
+
+        #验证外包合同是否创建成功
+        contract_page.gobackToContractlist()
+        self.assertEqual(contract_page.verifyContractCreateSucess(),'发票申请')
+        functions.insert_img(self.driver, current_time + "__CheckCreatePrdLineBPOContract.png")
+        my_client.setWaitTime(2)
+        my_client.close()
+
+
     #外包转会员
-    def AA_test_BPOContractTransToVIP(self):
+    def AA_test_4_BPOContractTransToVIP(self):
         self.user_login_verify()
         my_client = myClient(self.driver)
         my_client.gotoMyClientList_All(Data.lnk_moblie)

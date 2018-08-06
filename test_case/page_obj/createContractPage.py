@@ -74,6 +74,21 @@ class NewContractPage(Page):
         self.find_element(*self.intention_Amt_loc).clear()
         self.find_element(*self.intention_Amt_loc).send_keys(value)
 
+    #输入服务费率
+    house_rate_loc = (By.ID,'txtHouseRate')#房抵贷
+    car_rate_loc = (By.ID,'txtCarRate')#车抵贷
+    credit_rate_loc = (By.ID,'txtCreditRate')#信用贷款
+    creditCard_rate_loc = (By.ID,'txtCreditCardRate')#信用卡贷款
+    bridge_rate_loc = (By.ID,'txtBridgeRate')#过桥垫资
+    cmp_rate_loc = (By.ID,'txtCompanyRate')#企业贷款
+    def inputServiceRate(self):
+        self.input_value(self.house_rate_loc,8)
+        self.input_value(self.car_rate_loc,10)
+        self.input_value(self.credit_rate_loc,5)
+        self.input_value(self.creditCard_rate_loc,15)
+        self.input_value(self.bridge_rate_loc,0.05)
+        self.input_value(self.cmp_rate_loc,1)
+
     #输入合同起始日期
     contract_startDate_loc = 'txtServiceStart'
     def selectConStartDate(self,value='2018-01-20'):
@@ -227,7 +242,7 @@ class NewContractPage(Page):
         self.switchToParentFrame()
 
 #=======================================================================================================================
-    # 创建外包合同
+    # 创建普通外包合同
     def createBPOContract(self):
         self.clickContractTab()
         self.openNewContractPage()
@@ -237,6 +252,27 @@ class NewContractPage(Page):
         self.selectConStartDate()
         self.inputPreLoanAmt()
         self.inputIntentionAmt()
+        self.inputContractMo()
+        self.inputAgreementDetail()
+        self.scrollToElement('id',self.moveto_save_btn_loc)
+        self.uploadContractFile()
+        self.submitContract()
+        time.sleep(3)
+        self.close_alert()
+        time.sleep(1)
+        #self.close_alert()
+
+    # 创建条线外包合同
+    def create_productline_BPOContract(self):
+        self.clickContractTab()
+        self.openNewContractPage()
+        time.sleep(1)
+        self.inputContractDetail_BPO()
+        self.selectContractName()
+        self.selectConStartDate()
+        self.inputPreLoanAmt()
+        self.inputIntentionAmt()
+        self.inputServiceRate()
         self.inputContractMo()
         self.inputAgreementDetail()
         self.scrollToElement('id',self.moveto_save_btn_loc)

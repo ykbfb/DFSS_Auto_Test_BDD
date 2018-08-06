@@ -476,10 +476,14 @@ class ServiceManageOrderPage(Page):
     upload_sucess_loc =(By.CLASS_NAME,'layui-layer-btn0')
     loan_startdate_loc = 'txtLendingDate'#放款期限： 起始日期
     loan_enddate_loc = 'txtLendingDateEnd'#放款期限： 结束日期
+    loan_lend_date_loc = 'txtLendDateTime'#放款时间
     bank_CardNo_loc = (By.ID,'txt_BankCardNum')#银行卡号
     bank_card_phone_loc = (By.ID,'txt_BankCardCellphone')#银行卡对应手机号
+    bank_name_loc = (By.ID,'txt_OpenBank')#开户银行
     bank_card_photo_loc = '//*[@id="pickerBankCardPhotographFile"]/div[2]/input'#银行卡拍照附件
     bank_card_upload_btn_loc = (By.ID,'btnUpload_pickerBankCardPhotographFile')#上传
+    confirm_info_attch_loc = (By.XPATH,'//*[@id="pickerInfoServiceFile"]/div[2]/input')#信息服务确认书
+    confirm_info_upload_loc = (By.ID,'btnUpload_pickerInfoServiceFile')#上传
     loan_memo_loc = (By.ID,'Memo')#备注
     loan_submit_loc = (By.XPATH,'//*[@id="main"]/div[1]/div/table/tbody/tr[2]/td[1]/input')#提交审核
     moveto_loan_submit_loc = '//*[@id="main"]/div[1]/div/table/tbody/tr[2]/td[1]/input'
@@ -498,16 +502,22 @@ class ServiceManageOrderPage(Page):
         self.find_element(*self.loan_org_other_rate_loc).send_keys(10)
         self.getDropdownMenuById(self.loan_other_rate_type_loc, 1)
         self.getDropdownMenuById(self.loan_repay_type_loc, 1)
-        self.uploadFile('id',self.loan_certicate_loc,r'F:\PyhtonTest\图图.jpg')
+        self.uploadFile('id',self.loan_certicate_loc,r'G:\PyhtonTest\图图.jpg')
         self.switchWindow()
         self.click_element(*self.upload_sucess_loc)
         self.getDropdownMenuById(self.loan_oprate_type_loc, 1)
         self.getDateTimePicker(self.loan_startdate_loc,time.strftime('%Y-%m-%d',time.localtime(time.time())))
         self.getDateTimePicker(self.loan_enddate_loc,time.strftime('%Y-%m-%d',time.localtime(time.time())))
+        self.getDateTimePicker(self.loan_lend_date_loc,time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time())))
         self.input_value(self.bank_CardNo_loc,'1425368798651425470')
         self.input_value(self.bank_card_phone_loc,'16547586921')
-        self.uploadFile('xpath',self.bank_card_photo_loc,r'F:\PyhtonTest\图图.jpg')
+        self.input_value(self.bank_name_loc,'苏州东坡银行')
+        self.uploadFile('xpath',self.bank_card_photo_loc,r'G:\PyhtonTest\图图.jpg')
         self.click_element(*self.bank_card_upload_btn_loc)
+        time.sleep(3)
+        self.uploadFile2(self.confirm_info_attch_loc,r'G:\PyhtonTest\图图.jpg')
+        self.click_element(*self.confirm_info_upload_loc)
+        time.sleep(1)
         self.setWaitTime(20)
         self.find_element(*self.loan_memo_loc).clear()
         self.find_element(*self.loan_memo_loc).send_keys(10)
