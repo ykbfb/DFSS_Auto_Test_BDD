@@ -23,6 +23,39 @@ Created on 2017年4月25日
 
 @author: Administrator
 '''
+#-----------------------------------------
+import logging,os,sys
+sys.path.append("./model")
+from test_case.models import settings
+from datetime import datetime
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, InvalidElementStateException
+from selenium.webdriver.support.wait import WebDriverWait
+
+logger = logging.getLogger(__name__)
+
+def fail_on_screenshot(function):
+    def get_snapshot_directory():
+        if not os.path.exists(settings.SNAPSHOT_DIRECTORY):
+            os.mkdir(settings.SNAPSHOT_DIRECTORY)
+        return settings.SNAPSHOT_DIRECTORY
+
+    def get_current_time_str():
+        return datetime.strftime(datetime.now(), "%Y%m%d%H%M%S%f")
+
+    def wrapper(*args, **kwargs):
+        instance, selector = args[0], args[1]
+        try:
+            return function(*args, **kwargs)
+        except (TimeoutException, NoSuchElementException, InvalidElementStateException) as ex:
+            logger.error("Could not find the selector: [{}].".format(selector))
+            filename = "{}.png".format(get_current_time_str())
+            screenshot_path = os.path.join(get_snapshot_directory(), filename)
+            logger.debug(instance.selenium.page_source)
+            instance.selenium.save_screenshot(screenshot_path)
+            raise ex
+    return wrapper
+#-----------------------------------------------------------------------------
+
 class Page(object):
     
     dfss_url = 'http://10.40.3.230:10023/Account/Logon'
@@ -37,10 +70,12 @@ class Page(object):
         url = self.base_url +url
         self.driver.get(url)
         assert self.on_page(),'Did not land on %s' %url
-        
+
+    @fail_on_screenshot
     def find_element(self,*loc):
         return self.driver.find_element(*loc)
-    
+
+    @fail_on_screenshot
     def find_elements(self,*loc):
         return self.driver.find_elements(*loc)
 
@@ -134,7 +169,7 @@ class Page(object):
             self.driver.switch_to.frame(trg_frame)
             print('has switch to the frame by xpath: ', frame)
         except NoSuchElementException as e:
-            print('未找到指定的iframe',e)
+            print('未找到指定的iframe: ',e)
 
     def switchToParentFrame(self):  # 回退到上一层frame
         try:

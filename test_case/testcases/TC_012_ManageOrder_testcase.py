@@ -27,7 +27,7 @@ class ServiceOrderTests(myunit.MyTest):
         login(self.driver).user_login(username, password, city)
 
     # 融服接单订单
-    def aa_test_0001_acceptOrder(self):
+    def test_0001_acceptOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -44,7 +44,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #【贷前调查】转入【专家测评】
     #@unittest.Myskip #如果上一个case执行失败，则跳过次case
-    def aa_test_0002_moveToExpert(self):
+    def test_0002_moveToExpert(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -174,7 +174,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #【机构审批】--子订单成交，提交放款喜报
     #@unittest.Myskip
-    def test_0010_submitChanelResult(self):
+    def aa_test_0010_submitChanelResult(self):
         self.user_login_verify()
         time.sleep(2)
         b = Page(self.driver)
