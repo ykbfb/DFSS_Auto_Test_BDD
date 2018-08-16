@@ -11,7 +11,7 @@ import random
 class Data:
 
 #===============测试角色=========================================
-    sales = 'yanfang'  #融资顾问
+    sales = 'zhengwenbin'  #融资顾问
     sales_manager= 'wangweiwei' #销售经理
     sales_director = 'pengxiaoli'#销售总监
     service_manager = 'xuweilan'#融服经理
@@ -21,12 +21,12 @@ class Data:
     city = 'suzhou'#城市
 
 #===============客户详情=========================================
-    lnk_moblie = '18325556336'
+    lnk_moblie = '18325556339'
     sub_s = lnk_moblie[7:]
     #lnk_name = '王女士'
     lnk_name = '自动化联系人' + sub_s
-    #cmp_name = '需求书修改有限公司'+ lnk_moblie
-    cmp_name = 'AACT13091213265有限公司'
+    cmp_name = '需求书修改有限公司'+ lnk_moblie
+    #cmp_name = 'AACT13091213265有限公司'
 
 #===============合同归档=========================================
     #合同打回、作废原因

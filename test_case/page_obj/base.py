@@ -2,7 +2,7 @@
 #-*- conding=utf-8 -*-
 # encoding: utf-8
 
-#如果定位不到元素，则强制在页面暂停，用time.sleep（）
+# 如果定位不到元素，则强制在页面暂停，用time.sleep（）
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -10,8 +10,6 @@ from selenium.webdriver import ActionChains
 #from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-# from selenium.webdriver.support.wait import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -21,7 +19,7 @@ import random
 '''
 Created on 2017年4月25日
 
-@author: Administrator
+@author: kun yang
 '''
 #-----------------------------------------
 import logging,os,sys
@@ -106,10 +104,10 @@ class Page(object):
         self.wait_time = wait_time
         self.ele_path = ele_path
         try:
-            WebDriverWait(self.driver,wait_time).until(EC.presence_of_element_located(ele_path))
+            WebDriverWait(self.driver,wait_time,poll_frequency=0.5,ignored_exceptions=None).until(EC.presence_of_element_located(ele_path))
             #WebDriverWait(self.driver, self.wait_time).until(EC.presence_of_element_located(self.find_element(*self.ele_path)))
             '''判断元素是否可见，如果可见就返回这个元素'''
-        except TimeoutError as e:
+        except NoSuchElementException as e:
             print("等待超时，元素找不到： " + e)
 
     def close(self):
@@ -283,11 +281,12 @@ class Page(object):
         else:
             print("can't find the element, please select the correct way: id, name, xpath, CSS, class_name")
 
-    def scrollToElement_new(self, *target):  # getWay元素定位的方式； target元素属性名称（id,name,xpath...）
-        self.target = target
-        target_element = self.find_element(*target)
-        self.driver.execute_script("arguments[0].scrollIntoView();", target_element)  # 拖动到可见的元素去
-        print("move to element success: ", target)
+    def scrollToElement_new(self, *loc):  # getWay元素定位的方式； target元素属性名称（id,name,xpath...）
+        try:
+            target_element = self.driver.find_element(*loc)
+            self.driver.execute_script("arguments[0].scrollIntoView();", target_element)  # 拖动到可见的元素去
+        except NoSuchElementException as e:
+            print('找不到该指定元素： %s'%e)
 
 #=======================================================================================================================================
     #删除浏览器缓存

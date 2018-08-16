@@ -18,7 +18,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from .base import Page
 import time
-from data.TestData import Data
+#from data.TestData import Data
+from data.ReadTestData import Data
+data = Data()
 
 class finceBookInfo(Page):
 
@@ -38,7 +40,6 @@ class finceBookInfo(Page):
     finceBookInfo_frame_loc = 'layui-layer-iframe4'
     def switchToFinceBookFrame(self):
         self.switchToOneFrame(self.finceBookInfo_frame_loc)
-
     #需求书详情
     clt_type_loc = (By.ID,'rdCltType1') #选择客户类型--企业主
     def setCltType(self):
@@ -855,7 +856,7 @@ class finceBookInfo(Page):
         self.switchToFinceBookFrame()
         '''基础信息'''
         self.setCltType()
-        self.inputCltName(value=Data.lnk_name)
+        self.inputCltName(value=data.getCaseInitClient('需求书编辑')['lnk_name'])
         self.setCltSex()
         self.setCltMarry()
         self.setCltID(index=0)
@@ -882,7 +883,7 @@ class finceBookInfo(Page):
         self.selectShares(index=2)
         self.selectCmpLocation()
         self.selectCmpNatture(index=2)
-        self.inputCmpName(value=Data.cmp_name)
+        self.inputCmpName(value=data.getCaseInitClient('需求书编辑')['cmp_name'])
         self.selectCmpRadeArea(index=2)
         self.inputCmpAdress(value='企业主-某市上大路1000号中银大厦')
         self.inputCmpEmpAmt(value='1000')
@@ -1009,6 +1010,7 @@ class finceBookInfo(Page):
 
         '''提交'''
         self.submitFinceBookInfo()
+        # self.close_alert()
 
     # ============================================================================================
     # 验证case的执行结果

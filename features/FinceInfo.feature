@@ -7,17 +7,17 @@ Feature: 需求书测试
   @save_fin_bookInfo
   Scenario: 保存需求书
     Given 销售顾问登录融管系统
-    When 查询客户
+    When 查询要编辑需求书的客户
     When 修改需求书并保存
     Given 销售顾问登录融管系统
-    When 查询客户
+    When 查询要编辑需求书的客户
     Then 需求书保存成功
 
   @submit_fin_bookInfo
   Scenario: 提交需求书
     Given 销售顾问登录融管系统
-    When 查询客户
+    When 查询要编辑需求书的客户
     When 修改需求书并提交
     Given 销售顾问登录融管系统
-    When 查询客户
+    When 查询要编辑需求书的客户
     Then 需求书提交成功

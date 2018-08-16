@@ -8,7 +8,20 @@ from email.header import Header
 import smtplib
 import time
 import os
-import unittest 
+import unittest
+#======================
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./DFSS_Auto_Test_BDD")))
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./test_case/testcases")))
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./report")))
+sys.path.append("./models")
+sys.path.append("./page_obj")
+sys.path.append("./testcases")
+sys.path.append("./report")
+sys.path.append("./test_case")
+from test_case.models import *
+from test_case.page_obj import *
+#======================
 
 #发邮件
 def send_email(file_new):
@@ -36,12 +49,16 @@ def new_report(testreport):
 
 if __name__ == '__main__':
     now = time.strftime("%Y-%m-%d %H_%M_%S")
-    filename = './report/' +now+'result.thml'
+    current_path = os.path.dirname(__file__)#加此句代码，是为了在用命令执行项目的时候能正常运行
+    filename = current_path + '/report/' +now+'result.thml'  #相对路径
+    #filename = 'G:\\DFSS_Auto_Test_BDD\\report\\' +now+'result.thml'#绝对路径
     fp = open(filename,"wb")
     runner = HTMLTestRunner(stream=fp,
                             title='融管系统自动化测试报告',
                             description='环境：window 7 浏览器： Chrome')
-    discover = unittest.defaultTestLoader.discover('./test_case/testcases',pattern = '*_testcase.py')
+    runner = HTMLTestRunner()
+    discover = unittest.defaultTestLoader.discover(current_path + '/test_case/testcases',pattern = '*_testcase.py')
+    #discover = unittest.defaultTestLoader.discover('G:\\DFSS_Auto_Test_BDD\\test_case\\testcases',pattern = '*_testcase.py')
     #================================================================================================================
     #定时跑case
     # k = 1

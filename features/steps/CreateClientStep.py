@@ -26,15 +26,17 @@ def step_inputClientDetail(context):
     nc.inputMobile('12589756835')
     nc.checkMobileIsDuplicate()
 
-@When('输入系统中不存在的手机号')
-def step_inputClientDetail(context):
+@When('输入系统中不存在的手机号:{lnk_mobile}')
+def step_inputClientDetail(context,lnk_mobile):
+    context.lnk_mobile = lnk_mobile
     global nc
     nc = createClient(context.driver)
     nc.setWaitTime(2)
     nc.open_rapidOperation()
     nc.open_newClient()
     nc.switchToNewClientFrame()
-    nc.inputMobile(Data.lnk_moblie)
+    nc.inputMobile(lnk_mobile)
+    # nc.inputMobile(Data.lnk_moblie)
     nc.checkMobileIsDuplicate()
     time.sleep(1)
 
@@ -60,12 +62,13 @@ def step_createNewClient(context):
     time.sleep(1)
     functions.insert_img(context.driver, "Client_isCreateSuccess_"+current_time+".png")  # 客户详情
 
-@Then('客户创建成功')
-def step_clientCreateSucess(context):
-    nc.checkClientCreateSuccess(Data.lnk_moblie)
+@Then('客户创建成功:{lnk_mobile}')
+def step_clientCreateSucess(context,lnk_mobile):
+    context.lnk_mobile = lnk_mobile
+    nc.checkClientCreateSuccess(lnk_mobile)
     functions.insert_img(context.driver, "CheckClient_isCreateSuccess_"+current_time+".png")
     assert_that(nc.check_client_createSucess(), equal_to(''))
-    nc.close()
+
 
 
 

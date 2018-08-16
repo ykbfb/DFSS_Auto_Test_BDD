@@ -13,7 +13,6 @@ sys.path.append("./page_obj")
 from test_case.models import myunit, functions
 from test_case.page_obj.loginPage import login
 from test_case.page_obj.myClientsPage import myClient
-from test_case.page_obj.ShareClientPage import ShareClientPage
 from test_case.page_obj.createClientPage import createClient
 from test_case.page_obj.DeleteClientPage import DeleteClientPage
 from data.TestData import Data
