@@ -66,7 +66,7 @@ if __name__ == '__main__':
     #==================================================================================================================
     runner.run(discover)
     fp.close()
-    file_path = new_report('./report/')
+    file_path = new_report(current_path + '/report/')
     send_email(file_path)
 
 # input(">>Press any key to exit...")
