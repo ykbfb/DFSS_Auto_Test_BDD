@@ -12,15 +12,6 @@ import unittest
 #======================
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./DFSS_Auto_Test_BDD")))
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./test_case/testcases")))
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"./report")))
-sys.path.append("./models")
-sys.path.append("./page_obj")
-sys.path.append("./testcases")
-sys.path.append("./report")
-sys.path.append("./test_case")
-from test_case.models import *
-from test_case.page_obj import *
 #======================
 
 #发邮件
@@ -56,7 +47,7 @@ if __name__ == '__main__':
     runner = HTMLTestRunner(stream=fp,
                             title='融管系统自动化测试报告',
                             description='环境：window 7 浏览器： Chrome')
-    runner = HTMLTestRunner()
+    # runner = HTMLTestRunner()
     discover = unittest.defaultTestLoader.discover(current_path + '/test_case/testcases',pattern = '*_testcase.py')
     #discover = unittest.defaultTestLoader.discover('G:\\DFSS_Auto_Test_BDD\\test_case\\testcases',pattern = '*_testcase.py')
     #================================================================================================================
