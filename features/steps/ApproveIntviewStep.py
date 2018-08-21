@@ -2,10 +2,8 @@ import unittest, sys
 
 sys.path.append("./model")
 sys.path.append("./page_obj")
-from test_case.models import myunit, functions
-from test_case.page_obj.loginPage import login
+from test_case.models import functions
 from test_case.page_obj.ApproveIntviewPage import ApproveIntviewPage
-from test_case.page_obj.base import *
 from data.TestData import Data
 import time
 from behave import *

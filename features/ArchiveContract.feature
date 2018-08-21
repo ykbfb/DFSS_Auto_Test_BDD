@@ -8,6 +8,7 @@ Feature: 合同归档测试
     Given 分公司财务登录融管系统
     When 以：公司名义归档会员合同，进入【财务】-【合同审批发放】-【未归档】页面选择合同并点击【归档】按钮
     Then 合同归档成功
+
   @arc_bpo_contract_cmp
   Scenario: 以个人名义归档外包合同
     Given 分公司财务登录融管系统

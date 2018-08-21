@@ -11,10 +11,6 @@ current_time = time.strftime('%Y%m%d%S', time.localtime(time.time()))
 
 class Data:
     '''初始化测试数据'''
-    lnk_mobile = ''
-    lnk_name = ''
-    cmp_name = ''
-
 #==================================================================================================================================================
 # 初始化用户登录信息
 #==================================================================================================================================================
@@ -22,10 +18,6 @@ class Data:
         self.role = role
         try:
             user = get_excel_specfied_row("BaseData.xls", "userInfo",role)
-            # username = user[0][1]
-            # password = user[0][2]
-            # city = user[0][3]
-            # return username,password,city
             u = {
             'username': user[0][1],
             'password': user[0][2],
@@ -47,11 +39,6 @@ class Data:
             'cmp_name' : client[0][5],
             'ContractCode' : client[0][6]}
             return a
-            # lnk_mobile = client[0][1]
-            # lnk_name = client[0][4]
-            # cmp_name = client[0][5]
-            # ContractCode = client[0][6]
-            # return lnk_mobile,lnk_name,cmp_name,ContractCode
 
         except:
             print('输入错误，请确认输入内容为：老客户 or 新客户')
@@ -72,7 +59,7 @@ class Data:
             print('输入错误，请确认输入内容在文件BaseData->initData->Key列中')
 
 #=================================================================================================================================================
-# 初始化测试结果
+# 读取测试结果
 #=================================================================================================================================================
     def getExpectedResult(self,scenario):
         self.scenario = scenario
@@ -82,8 +69,13 @@ class Data:
             return expected
         except:
             print('输入的测试场景不存在')
-
-
+#===============================================================================================================================
+#创建子订单的产品
+#===============================================================================================================================
+    #意向单
+    org_name = '浦发银行' #机构
+    prd_name = '线上万用金' #产品名称
+    credit_manager = '令磊'  #信贷经理
 
 if __name__ == '__main__':
     u = Data()

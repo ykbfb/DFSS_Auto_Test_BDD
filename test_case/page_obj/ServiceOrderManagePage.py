@@ -21,6 +21,7 @@
 
 from selenium.webdriver.common.by import By
 from .base import Page
+from test_case.models import settings
 import time
 
 class ServiceManageOrderPage(Page):
@@ -162,7 +163,11 @@ class ServiceManageOrderPage(Page):
     sel_prd_loc = (By.ID,'_easyui_combobox_277')#选择产品
     add_prd_reason_loc = (By.ID,'addReason')#添加理由
     add_btn_loc = (By.ID,'btn_addMore')#添加按钮
-    sel_credit_manager_loc = (By.XPATH,'//*[@id="myTb"]/tbody/tr[2]/td[1]/div/img')#展开信贷经理
+    show_search_btn_loc = (By.ID,'btnSearchCondition')#显示查询条件
+    fruzzy_search_loc = (By.ID,'searchText')#模糊匹配
+    #sel_credit_manager_loc = (By.XPATH,'//*[@id="myTb"]/tbody/tr[2]/td[1]/div/img')#展开信贷经理
+    #sel_credit_manager_loc = (By.XPATH,'//*[@id="myTb"]/tbody/tr[3]/td[1]/div[1]')
+    sel_credit_manager_loc = (By.XPATH,'//*[@id="myTb"]/tbody/tr[4]/td[1]/div')#展开信贷经理
     sel_all_loc = (By.CLASS_NAME,'_selectall')#全选
     send_aim_order_loc = (By.ID,'btn_SendYXD')#发送意向单
     continue_send_loc = (By.ID,'continueSend')#继续发送
@@ -182,7 +187,7 @@ class ServiceManageOrderPage(Page):
         self.find_element(*self.agen_clt_name_loc).clear()
         self.find_element(*self.agen_clt_name_loc).send_keys(cmp_name)
         self.find_element(*self.agen_search_loc).click()
-        time.sleep(1)
+        time.sleep(2)
 
         '''打开预测评'''
         self.find_element(*self.agen_evalu_loc).click()
@@ -214,6 +219,12 @@ class ServiceManageOrderPage(Page):
        #===============================================================================================================
 
         '''发送意向单'''
+        # self.click_element(*self.show_search_btn_loc)
+        # time.sleep(1)
+        # self.scrollToElement_new(*self.fruzzy_search_loc)
+        # self.input_value(self.fruzzy_search_loc,prd_name)
+        # time.sleep(5)
+        # self.scrollToElement_new(*self.sel_credit_manager_loc)
         self.find_element(*self.sel_credit_manager_loc).click()
         time.sleep(1)
         self.find_element(*self.sel_all_loc).click()
@@ -249,6 +260,7 @@ class ServiceManageOrderPage(Page):
     sub_submit_loc = (By.XPATH,'//*[@id="main"]/form/table/tbody/tr[7]/td/input')#提交
     move_sub_submit_loc = '//*[@id="main"]/form/table/tbody/tr[7]/td/input'
     sub_confirm_loc = (By.CLASS_NAME,'layui-layer-btn0')#确定
+    fin_confirm_loc = (By.CLASS_NAME,'layui-layer-btn0')#确定
 
     def createSubOrder(self,cmp_name,credit_manager,org_name):
         self.cmp_name = cmp_name
@@ -288,6 +300,9 @@ class ServiceManageOrderPage(Page):
         time.sleep(1)
         self.switchWindow()
         self.find_element(*self.sub_confirm_loc).click()
+        time.sleep(2)
+        self.switchWindow()
+        self.click_element(*self.fin_confirm_loc)
 
 #=============================================================================================================
 #子订单：【贷前辅导】转入【机构审批】
@@ -502,7 +517,7 @@ class ServiceManageOrderPage(Page):
         self.find_element(*self.loan_org_other_rate_loc).send_keys(10)
         self.getDropdownMenuById(self.loan_other_rate_type_loc, 1)
         self.getDropdownMenuById(self.loan_repay_type_loc, 1)
-        self.uploadFile('id',self.loan_certicate_loc,r'G:\PyhtonTest\图图.jpg')
+        self.uploadFile('id',self.loan_certicate_loc,settings.Other_file)
         self.switchWindow()
         self.click_element(*self.upload_sucess_loc)
         self.getDropdownMenuById(self.loan_oprate_type_loc, 1)
@@ -512,10 +527,11 @@ class ServiceManageOrderPage(Page):
         self.input_value(self.bank_CardNo_loc,'1425368798651425470')
         self.input_value(self.bank_card_phone_loc,'16547586921')
         self.input_value(self.bank_name_loc,'苏州东坡银行')
-        self.uploadFile('xpath',self.bank_card_photo_loc,r'G:\PyhtonTest\图图.jpg')
+        self.uploadFile('xpath',self.bank_card_photo_loc,settings.Other_file)
         self.click_element(*self.bank_card_upload_btn_loc)
         time.sleep(3)
-        self.uploadFile2(self.confirm_info_attch_loc,r'G:\PyhtonTest\图图.jpg')
+        self.uploadFile2(self.confirm_info_attch_loc,settings.Other_file)
+        time.sleep(1)
         self.click_element(*self.confirm_info_upload_loc)
         time.sleep(1)
         self.setWaitTime(20)
@@ -553,8 +569,24 @@ class ServiceManageOrderPage(Page):
     aim_order_cunt_loc = (By.ID,'AimSubOrderTotal_1')#意向单
     def verifyAimOrderCreateSucess(self):
         '''校验意向单是否创建成功'''
-        self.switchToParentFrame()
-        time.sleep(1)
-        self.find_element(*self.agen_search_loc).click()
+        self.switchToDefaultContent()
+        self.switchToOneFrameByXpath(self.order_list_frame_loc)
         time.sleep(1)
         return self.find_element(*self.aim_order_cunt_loc).text
+
+    order_detail_loc = (By.XPATH,'//*[@id="main"]/div[1]/table/tbody/tr[2]/td/div[1]/div/div[1]/div[2]/div[2]/table/tbody/tr/td[1]/div/input[1]')
+    #订单详情
+    def verifySubOrderCreateSucess(self,credit_manager,org_name):
+        '''校验子订单创建成功'''
+        self.credit_manager = credit_manager
+        self.org_name = org_name
+        time.sleep(2)
+        self.switchToParentFrame()
+        self.input_value(self.credit_manage_loc,credit_manager)
+        self.input_value(self.sub_org_name_loc,org_name)
+        self.click_element(*self.sub_search_loc)
+        time.sleep(1)
+        print(self.find_element(*self.order_detail_loc).text)
+        return  self.find_element(*self.order_detail_loc).text
+
+

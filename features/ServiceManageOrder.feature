@@ -31,6 +31,7 @@ Feature: 我的订单
   Scenario: 创建子订单
     Given 融服登录融管系统
     When 打开【融资订单管理】→【我的订单】→【机构寻访】页签，选择主订单并点击【意向单管理】按钮，选择相应的意向单，点击【创建子订单】按钮进行子订单创建
+    Then 子订单创建成功
 
   @suborder_moveto_org_appv
   Scenario: 子订单转入机构审批

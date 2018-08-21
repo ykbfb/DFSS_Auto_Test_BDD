@@ -1,18 +1,23 @@
-import unittest, sys
-
+import sys
 sys.path.append("./model")
 sys.path.append("./page_obj")
-from test_case.models import myunit, functions,Screen
-from test_case.page_obj.loginPage import login
-from test_case.page_obj.myClientsPage import myClient
+from test_case.models import functions
 from test_case.page_obj.createIntviewPage import NewIntviewPage
-from data.TestData import Data
+from test_case.page_obj.myClientsPage import myClient
+from data.ReadTestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
-
 current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+data = Data()
+
+@When('查询邀约客户')
+def step_searchClient(context):
+    global  mc
+    mc = myClient(context.driver)
+    mc.gotoMyClientList_All(data.getCaseInitClient('邀约')['lnk_mobile'])
+    mc.setWaitTime(2)
 
 @When('输入DC邀约详情')
 def step_inputIntviewDetail_DC(context):

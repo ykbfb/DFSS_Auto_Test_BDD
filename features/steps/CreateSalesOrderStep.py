@@ -1,17 +1,16 @@
-import unittest, sys
+import sys
 
 sys.path.append("./model")
 sys.path.append("./page_obj")
-from test_case.models import myunit, functions
-from test_case.page_obj.loginPage import login
-from test_case.page_obj.myClientsPage import myClient
+from test_case.models import functions
 from test_case.page_obj.CreateOrderPage import NewOrderPage
-from data.TestData import Data
+from data.ReadTestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
 current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+data = Data()
 
 @When('创建{order_type}销售订单：打开【销售订单管理】点击【创建销售订单】按钮，输入销售订单详情并提交')
 def step_createSalesOrder(context,order_type):
@@ -32,6 +31,6 @@ def step_createSalesOrder(context,order_type):
 def step_verifySalesOrderCreateSucess(context):
     order.clickOrderTab()
     order.setWaitTime(2)
-    assert_that(order.verifySalesOrderCreateSucess().strip(), equal_to( Data.cmp_name))
+    assert_that(order.verifySalesOrderCreateSucess().strip(), equal_to( data.getCaseInitClient('创建销售订单')['cmp_name']))
     functions.insert_img(context.driver,"myClient_verifySalesOrderCreateSucess_"+current_time+".png")
 

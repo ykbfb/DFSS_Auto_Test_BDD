@@ -1,6 +1,10 @@
 #coding=utf-8
 #-*- conding=utf-8 -*-
 # encoding: utf-8
+'''
+Created on 2017年4月25日
+@author: kun yang
+'''
 
 # 如果定位不到元素，则强制在页面暂停，用time.sleep（）
 import time
@@ -14,14 +18,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import random
-
-
-'''
-Created on 2017年4月25日
-
-@author: kun yang
-'''
-#-----------------------------------------
 import logging,os,sys
 sys.path.append("./model")
 from test_case.models import settings
@@ -50,14 +46,15 @@ def fail_on_screenshot(function):
             screenshot_path = os.path.join(get_snapshot_directory(), filename)
             logger.debug(instance.selenium.page_source)
             instance.selenium.save_screenshot(screenshot_path)
+            #instance.selenium.get_screenshot_as_file(screenshot_path)
             raise ex
     return wrapper
 #-----------------------------------------------------------------------------
 
 class Page(object):
     
-    dfss_url = 'http://10.40.3.230:10023/Account/Logon'
-    
+    dfss_url = settings.DFSS_WEB_TEST_BASE_URL      #测试地址
+
     def __init__(self,selenium_driver,base_url=dfss_url,parent=None):
         self.base_url = base_url
         self.driver = selenium_driver
@@ -108,10 +105,9 @@ class Page(object):
             #WebDriverWait(self.driver, self.wait_time).until(EC.presence_of_element_located(self.find_element(*self.ele_path)))
             '''判断元素是否可见，如果可见就返回这个元素'''
         except NoSuchElementException as e:
-            print("等待超时，元素找不到： " + e)
+            print("等待超时，元素找不到： " + str(e))
 
     def close(self):
-        # self.delete_cookies()
         self.KeyboardActions()
         self.driver.quit()
 

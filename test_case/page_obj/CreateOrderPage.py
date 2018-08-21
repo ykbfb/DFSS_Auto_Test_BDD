@@ -63,6 +63,7 @@ class NewOrderPage(Page):
 
     def inputOrderDetail_Personal(self):
         self.find_element(*self.createOrderBtn_loc).click()
+        self.switchToParentFrame()
         self.switchWindow()
         self.switchToOneFrameByXpath(self.new_order_frame_loc)
         self.getDropdownMenuById(self.sel_contract_loc, 1)

@@ -27,7 +27,7 @@ class ServiceOrderTests(myunit.MyTest):
         login(self.driver).user_login(username, password, city)
 
     # 融服接单订单
-    def test_0001_acceptOrder(self):
+    def aa_test_0001_acceptOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -44,7 +44,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #【贷前调查】转入【专家测评】
     #@unittest.Myskip #如果上一个case执行失败，则跳过次case
-    def test_0002_moveToExpert(self):
+    def aa_test_0002_moveToExpert(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -78,7 +78,7 @@ class ServiceOrderTests(myunit.MyTest):
 
     #创建意向单
     #@unittest.Myskip
-    def aa_test_0004_createAimOrder(self):
+    def test_0004_createAimOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -88,14 +88,13 @@ class ServiceOrderTests(myunit.MyTest):
         my_order.createAimOrder(Data.cmp_name,Data.org_name,Data.prd_name)
         my_order.setWaitTime(2)
         self.assertIsNot(my_order.verifyAimOrderCreateSucess().strip(),'0/0/0/0/0')
-        #self.assertEqual(my_order.verifyAimOrderCreateSucess().strip(), '暂无查询到任何数据...')
         functions.insert_img(self.driver, current_time + "__myOrder_createAimOrder.png")
         my_order.setWaitTime(2)
         my_order.close()
 
     #创建子订单
     #@unittest.Myskip
-    def aa_test_0005_createSubOrder(self):
+    def test_0005_createSubOrder(self):
         self.user_login_verify()
         time.sleep(1)
         b = Page(self.driver)
@@ -104,7 +103,7 @@ class ServiceOrderTests(myunit.MyTest):
         my_order = ServiceManageOrderPage(self.driver)
         my_order.createSubOrder(Data.cmp_name,Data.credit_manager,Data.org_name)
         my_order.setWaitTime(2)
-        # self.assertEqual(my_order.search_by_fuzzy(), '需求书修改有限公司')
+        self.assertEqual(my_order.verifySubOrderCreateSucess(Data.credit_manager,Data.org_name), '订单详情')
         functions.insert_img(self.driver, current_time + "__myOrder_createSubsOrder.png")
         my_order.setWaitTime(2)
         my_order.close()

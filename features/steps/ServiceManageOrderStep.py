@@ -1,16 +1,17 @@
-import unittest, sys
+import sys
 
 sys.path.append("./model")
 sys.path.append("./page_obj")
-from test_case.models import myunit, functions
-from test_case.page_obj.loginPage import login
+from test_case.models import functions
 from test_case.page_obj.ServiceOrderManagePage import ServiceManageOrderPage
 from test_case.page_obj.base import *
-from data.TestData import Data
+from data.ReadTestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
+
 current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+data = Data()
 
 
 #================================================================================================================
@@ -21,7 +22,7 @@ def step_acceptOrder(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.acceptOrder(Data.cmp_name)
+    my_order.acceptOrder(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
 
 @Then('融服接单成功')
@@ -37,12 +38,12 @@ def step_movetoExpert(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.moveToExpert(Data.cmp_name)
+    my_order.moveToExpert(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
 
 @Then('订单进入专家测评')
 def step_verifymovetoExpertSucess(context):
-    context.assertEqual(my_order.verifyOrderMovetoExprtSucess().strip(), '暂无查询到任何数据...')
+    assert_that(my_order.verifyOrderMovetoExprtSucess().strip(),equal_to('暂无查询到任何数据...'))
     functions.insert_img(context.driver, "myOrder_movetoexpert_"+current_time+".png")
 
 #=================================================================================================================
@@ -53,7 +54,7 @@ def step_movetoAgency(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.moveToAgencySearch(Data.cmp_name)
+    my_order.moveToAgencySearch(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
 
 @Then('订单进入机构寻访')
@@ -70,7 +71,7 @@ def step_createAimOrder(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.createAimOrder(Data.cmp_name, Data.org_name, Data.prd_name)
+    my_order.createAimOrder(data.getCaseInitClient('我的订单')['cmp_name'], Data.org_name, Data.prd_name)
     my_order.setWaitTime(2)
 
 @Then('意向单创建成功')
@@ -87,9 +88,16 @@ def step_createSubOrder(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.createSubOrder(Data.cmp_name, Data.credit_manager, Data.org_name)
+    my_order.createSubOrder(data.getCaseInitClient('我的订单')['cmp_name'], Data.credit_manager, Data.org_name)
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_createSubsOrder"+current_time+".png")
+
+@Then('子订单创建成功')
+def step_verifySubOrderCreateSuccess(context):
+    assert_that(my_order.verifySubOrderCreateSucess(data.credit_manager,data.org_name).strip(),equal_to('订单详情'))
+    functions.insert_img(context.driver, "myOrder_createSubsOrderSuccess_"+current_time+".png")
+    my_order.setWaitTime(2)
+#==============================================================================================================================
 
 @When('打开【融资订单管理】→【我的订单】→【贷前辅导】页签，选择子订单并点击【转入机构审批】按钮')
 def step_subOrderMovetoOrgApproval(context):
@@ -98,7 +106,7 @@ def step_subOrderMovetoOrgApproval(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.moveToOrgApproval(Data.cmp_name)
+    my_order.moveToOrgApproval(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_moveSubsOrderToOrgApproval_"+current_time+".png")
 
@@ -109,7 +117,7 @@ def step_estimateCreditManager(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.estimateCreditManager(Data.cmp_name)
+    my_order.estimateCreditManager(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_moveSubsOrderToOrgApproval_"+current_time+".png")
 
@@ -122,11 +130,11 @@ def step_OrgApprove(context,appv_status):
     my_order = ServiceManageOrderPage(context.driver)
     context.appv_status = appv_status
     if appv_status == '不通过':
-        my_order.orgApproveReject(Data.cmp_name)
+        my_order.orgApproveReject(data.getCaseInitClient('我的订单')['cmp_name'])
         my_order.setWaitTime(2)
         functions.insert_img(context.driver, "myOrder_OrgApprove_reject_"+current_time+".png")
     elif appv_status == '通过':
-        my_order.orgApprovePass(Data.cmp_name)
+        my_order.orgApprovePass(data.getCaseInitClient('我的订单')['cmp_name'])
         my_order.setWaitTime(2)
         functions.insert_img(context.driver, "myOrder_OrgApprov_pass_"+current_time+".png")
 
@@ -137,6 +145,6 @@ def step_submitChanelResult(context):
     b.close_alert()
     global my_order
     my_order = ServiceManageOrderPage(context.driver)
-    my_order.submitChanelResult(Data.cmp_name)
+    my_order.submitChanelResult(data.getCaseInitClient('我的订单')['cmp_name'])
     my_order.setWaitTime(2)
     functions.insert_img(context.driver, "myOrder_ChanelResultSubmitSucess_"+current_time+".png")

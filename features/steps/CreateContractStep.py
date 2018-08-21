@@ -2,16 +2,23 @@ import sys
 
 sys.path.append("./model")
 sys.path.append("./page_obj")
-from test_case.models import myunit, functions
-from test_case.page_obj.loginPage import login
+from test_case.models import functions
 from test_case.page_obj.myClientsPage import myClient
 from test_case.page_obj.createContractPage import NewContractPage
-from data.TestData import Data
+from data.ReadTestData import Data
 import time
 from behave import *
 from hamcrest import assert_that, equal_to
 
 current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+data = Data()
+
+@When('查询合同客户')
+def step_searchClient(context):
+    global  mc
+    mc = myClient(context.driver)
+    mc.gotoMyClientList_All(data.getCaseInitClient('创建合同')['lnk_mobile'])
+    mc.setWaitTime(2)
 
 @When('进入【合同管理】页签点击【创建合同】按钮，选择【债权会员合同】并输入会员合同信息详情')
 def step_inputVIPContractDetail(context):

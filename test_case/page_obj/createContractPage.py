@@ -13,11 +13,11 @@
 #     CLASS_NAME = "class name"
 #     CSS_SELECTOR = "css selector"
 # --==================================================================
-
-from selenium.webdriver.common.action_chains import ActionChains
+from test_case.models import settings
 from selenium.webdriver.common.by import By
 from .base import Page
 import time
+
 
 class NewContractPage(Page):
     # 合同管理
@@ -141,8 +141,7 @@ class NewContractPage(Page):
     elem6 = (By.XPATH,'//*[@id="pickerBankCardFile"]/div[2]/input')
     elem7 = (By.XPATH,'//*[@id="pickerContractPaperFile"]/div[2]/input')
     elem8 = (By.XPATH,'//*[@id="pickerInfoServiceFile"]/div[2]/input')
-    file_path = 'G:\PyhtonTest\girl.jpg'
-
+    file_path = settings.Contract_file
 
     # uploadBtn = (By.ID,'btnUp')
     # uploadBtn2 = (By.ID, 'btnUp2')
