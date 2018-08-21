@@ -21,6 +21,7 @@
 
 from selenium.webdriver.common.by import By
 from .base import Page
+from test_case.models import settings
 import time
 
 class LoanRefundPage(Page):
@@ -69,7 +70,7 @@ class LoanRefundPage(Page):
         self.switchToOneFrameByXpath(self.red_refund_detail_frame_loc)
         self.input_value(self.lendtotal_amt_loc,100)
         self.getDateTimePicker(self.lend_time_loc,time.strftime('%Y-%m-%d %H:%M', time.localtime(time.time())))
-        self.uploadFile2(self.info_confirm_attach_loc,r'G:\PyhtonTest\图图.jpg')
+        self.uploadFile2(self.info_confirm_attach_loc,settings.Other_file)
         time.sleep(1)
         self.click_element(*self.info_confirm_upload_loc)
         time.sleep(3)

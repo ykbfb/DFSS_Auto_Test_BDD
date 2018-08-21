@@ -21,6 +21,7 @@
 
 from selenium.webdriver.common.by import By
 from .base import Page
+from test_case.models import settings
 import time
 
 class RebatePage(Page):
@@ -67,7 +68,7 @@ class RebatePage(Page):
         self.input_value(self.confirm_rbate_loc,100)
         self.input_value(self.red_refund_memo_loc,'自动化测试：返佣红冲')
         self.scrollToElement_new(*self.submit_btn_loc)
-        self.uploadFile2(self.rebate_attch_loc,r'G:\PyhtonTest\图图.jpg')
+        self.uploadFile2(self.rebate_attch_loc,settings.Other_file)
         time.sleep(2)
         self.switchWindow()
         self.click_element(*self.upload_sucess_loc)
